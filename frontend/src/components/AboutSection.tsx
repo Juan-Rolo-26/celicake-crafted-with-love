@@ -1,20 +1,29 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import aboutImage from "@/assets/about-bakery.jpg";
+import { fadeLeft, fadeRight, scaleIn, staggerContainer } from "@/lib/motion";
 
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerVariants = staggerContainer(0.2, 0.1);
 
   return (
-    <section id="nosotros" ref={ref} className="py-24 bg-background">
+    <section
+      id="nosotros"
+      ref={ref}
+      className="py-24 bg-gradient-to-b from-sage-light/60 via-cream to-rose-light/40"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+        >
           {/* Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            variants={fadeLeft(40, 0.8)}
             className="relative"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-elevated">
@@ -26,15 +35,23 @@ const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
             </div>
             {/* Decorative Element */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-rose-light rounded-2xl -z-10" />
-            <div className="absolute -top-6 -left-6 w-24 h-24 bg-sage-light rounded-2xl -z-10" />
+            <motion.div
+              aria-hidden
+              className="absolute -bottom-6 -right-6 w-32 h-32 bg-rose-light rounded-2xl -z-10"
+              animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              aria-hidden
+              className="absolute -top-6 -left-6 w-24 h-24 bg-sage-light rounded-2xl -z-10"
+              animate={{ y: [0, 8, 0], rotate: [0, -2, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
           </motion.div>
 
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={fadeRight(40, 0.8)}
           >
             <span className="inline-block text-primary font-medium mb-4">
               Sobre Nosotros
@@ -67,18 +84,27 @@ const AboutSection = () => {
 
             {/* Values */}
             <div className="flex flex-wrap gap-3 mt-8">
-              <span className="px-4 py-2 bg-sage-light text-sage-dark rounded-full text-sm font-medium">
+              <motion.span
+                variants={scaleIn(0.95, 0.4)}
+                className="px-4 py-2 bg-sage-light text-sage-dark rounded-full text-sm font-medium"
+              >
                 Artesanal
-              </span>
-              <span className="px-4 py-2 bg-rose-light text-rose-dark rounded-full text-sm font-medium">
+              </motion.span>
+              <motion.span
+                variants={scaleIn(0.95, 0.4)}
+                className="px-4 py-2 bg-rose-light text-rose-dark rounded-full text-sm font-medium"
+              >
                 Con amor
-              </span>
-              <span className="px-4 py-2 bg-cream-dark text-warm-brown rounded-full text-sm font-medium">
+              </motion.span>
+              <motion.span
+                variants={scaleIn(0.95, 0.4)}
+                className="px-4 py-2 bg-cream-dark text-warm-brown rounded-full text-sm font-medium"
+              >
                 Seguro
-              </span>
+              </motion.span>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

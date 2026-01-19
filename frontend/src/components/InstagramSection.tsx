@@ -2,21 +2,41 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import cakeImage from "@/assets/cake-product.jpg";
-import breadImage from "@/assets/bread-product.jpg";
-import pastriesImage from "@/assets/pastries-product.jpg";
-import heroImage from "@/assets/hero-bakery.jpg";
+import igPost1 from "@/assets/instagram/ig-post-1-DTiJDYFjt79.jpg";
+import igPost2 from "@/assets/instagram/ig-post-2-DTpyrr5jqA4.jpg";
+import igPost3 from "@/assets/instagram/ig-post-3-DTnIx7GjhYP.jpg";
+import igPost4 from "@/assets/instagram/ig-post-4-DTk0aSEjlRR.jpg";
+import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 
 const InstagramSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const headerVariants = fadeUp(32, 0.8);
+  const gridVariants = staggerContainer(0.12, 0.2);
+  const cardVariants = scaleIn(0.95, 0.4);
 
-  // Using product images as Instagram preview grid
+  // Latest Instagram post previews
   const instagramImages = [
-    { image: cakeImage, alt: "Torta artesanal" },
-    { image: breadImage, alt: "Pan sin gluten" },
-    { image: pastriesImage, alt: "Repostería dulce" },
-    { image: heroImage, alt: "Productos Celicake" },
+    {
+      image: igPost1,
+      alt: "Bocamatero libre de gluten con alfajores y palitos dulces",
+      href: "https://www.instagram.com/p/DTiJDYFjt79/",
+    },
+    {
+      image: igPost2,
+      alt: "Dulzuras para compartir con masas secas y tarta de ricota",
+      href: "https://www.instagram.com/p/DTpyrr5jqA4/",
+    },
+    {
+      image: igPost3,
+      alt: "Carrot cake sin TACC y sin azucar agregada",
+      href: "https://www.instagram.com/p/DTnIx7GjhYP/",
+    },
+    {
+      image: igPost4,
+      alt: "Budines con crema pastelera y dulce de leche",
+      href: "https://www.instagram.com/p/DTk0aSEjlRR/",
+    },
   ];
 
   return (
@@ -24,9 +44,9 @@ const InstagramSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          variants={headerVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
           className="text-center mb-12"
         >
           <Instagram className="w-10 h-10 text-rose-dark mx-auto mb-4" />
@@ -41,20 +61,20 @@ const InstagramSection = () => {
 
         {/* Instagram Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          variants={gridVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
         >
           {instagramImages.map((item, index) => (
             <motion.a
               key={index}
-              href="https://instagram.com/celicake_"
+              href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+              variants={cardVariants}
+              transition={{ type: "spring", stiffness: 240, damping: 20 }}
+              whileHover={{ y: -6 }}
               className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer"
             >
               <img
@@ -71,9 +91,9 @@ const InstagramSection = () => {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          variants={fadeUp(20, 0.6)}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
           className="text-center"
         >
           <Button variant="soft" size="lg" asChild>

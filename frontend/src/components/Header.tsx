@@ -23,6 +23,13 @@ const Header = () => {
     { label: "Pedidos", href: "#pedidos" },
   ];
 
+  const navLinkClassName = (isMobile = false) =>
+    `relative text-foreground/80 transition-all font-medium ${
+      isScrolled
+        ? "px-1 py-1 hover:text-foreground"
+        : "px-1 py-1 hover:text-foreground"
+    }${isMobile ? " w-full text-left" : ""} after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full`;
+
   const handleWhatsApp = () => {
     window.open("https://wa.me/543515157731?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos", "_blank");
   };
@@ -34,26 +41,38 @@ const Header = () => {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-soft py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-cream-dark/60 py-3"
+          : "bg-white/80 backdrop-blur-md border-b border-cream-dark/60 py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2">
-            <span className="font-display text-2xl md:text-3xl font-semibold text-foreground">
-              Celicake
+          <a href="#inicio" className="flex items-center gap-3">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cream shadow-soft">
+              <img
+                src="/images/logo_celicake.png"
+                alt="Celicake"
+                className="h-10 w-10 object-contain"
+              />
             </span>
+            <div className="leading-tight">
+              <span className="block font-display text-2xl font-semibold text-foreground">
+                Celicake
+              </span>
+              <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                sin gluten
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                className={navLinkClassName()}
               >
                 {item.label}
               </a>
@@ -62,7 +81,10 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button variant="whatsapp" onClick={handleWhatsApp}>
+            <Button
+              onClick={handleWhatsApp}
+              className="rounded-2xl bg-foreground text-background hover:bg-foreground/90 shadow-elevated"
+            >
               <MessageCircle size={18} />
               WhatsApp
             </Button>
@@ -82,20 +104,23 @@ const Header = () => {
           <motion.nav
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-card shadow-elevated py-4 px-4"
+            className="md:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-cream-dark/60 shadow-elevated py-4 px-4"
           >
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-foreground/80 hover:text-primary transition-colors font-medium py-2"
+                  className={navLinkClassName(true)}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
-              <Button variant="whatsapp" onClick={handleWhatsApp} className="mt-2">
+              <Button
+                onClick={handleWhatsApp}
+                className="mt-2 rounded-2xl bg-foreground text-background hover:bg-foreground/90 shadow-elevated"
+              >
                 <MessageCircle size={18} />
                 WhatsApp
               </Button>

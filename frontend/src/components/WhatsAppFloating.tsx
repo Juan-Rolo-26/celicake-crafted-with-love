@@ -14,8 +14,10 @@ const WhatsAppFloating = () => {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 200 }}
+      whileHover={{ scale: 1.12 }}
+      whileTap={{ scale: 0.95 }}
       onClick={handleWhatsApp}
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary shadow-elevated flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform duration-300"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary shadow-elevated flex items-center justify-center text-primary-foreground"
       aria-label="Contactar por WhatsApp"
     >
       <motion.div

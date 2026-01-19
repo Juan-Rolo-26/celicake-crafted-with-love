@@ -1,10 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageCircle, ShoppingBag, Truck } from "lucide-react";
+import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 
 const HowToOrderSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const headerVariants = fadeUp(32, 0.8);
+  const stepVariants = scaleIn(0.96, 0.5);
+  const stepsGridVariants = staggerContainer(0.16, 0.2);
 
   const steps = [
     {
@@ -32,9 +36,9 @@ const HowToOrderSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          variants={headerVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
           className="text-center mb-16"
         >
           <span className="inline-block text-primary font-medium mb-4">
@@ -50,18 +54,26 @@ const HowToOrderSection = () => {
         </motion.div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+        <motion.div
+          variants={stepsGridVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="grid md:grid-cols-3 gap-8 lg:gap-12"
+        >
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
+              variants={stepVariants}
+              transition={{ type: "spring", stiffness: 220, damping: 18 }}
+              whileHover={{ y: -6 }}
               className="relative"
             >
               {/* Connector Line */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-border" />
+                <motion.div
+                  variants={fadeUp(12, 0.4)}
+                  className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-border"
+                />
               )}
 
               <div className="step-card relative">
@@ -85,7 +97,7 @@ const HowToOrderSection = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

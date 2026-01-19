@@ -6,101 +6,101 @@
 
 @layer base {
   :root {
-    /* Celicake Brand Colors - Soft & Natural */
-    --background: 30 25% 98%;
-    --foreground: 25 15% 25%;
+    /* Celicake Brand Colors - Coastal & Warm */
+    --background: 36 45% 97%;
+    --foreground: 22 32% 18%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 25 15% 25%;
+    --card: 36 40% 98%;
+    --card-foreground: 22 32% 18%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 25 15% 25%;
+    --popover: 36 40% 98%;
+    --popover-foreground: 22 32% 18%;
 
-    /* Primary - Soft Sage Green */
-    --primary: 135 35% 55%;
+    /* Primary - Deep Teal */
+    --primary: 176 45% 34%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Soft Pink */
-    --secondary: 350 45% 92%;
-    --secondary-foreground: 350 30% 35%;
+    /* Secondary - Warm Apricot */
+    --secondary: 24 80% 88%;
+    --secondary-foreground: 24 30% 25%;
 
-    /* Muted - Warm Cream */
-    --muted: 35 30% 95%;
-    --muted-foreground: 25 15% 45%;
+    /* Muted - Sand */
+    --muted: 32 35% 92%;
+    --muted-foreground: 24 18% 42%;
 
-    /* Accent - Rose Pink */
-    --accent: 350 55% 80%;
-    --accent-foreground: 350 30% 25%;
+    /* Accent - Coral */
+    --accent: 12 70% 68%;
+    --accent-foreground: 12 32% 25%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 20% 88%;
-    --input: 35 20% 88%;
-    --ring: 135 35% 55%;
+    --border: 28 25% 86%;
+    --input: 28 25% 86%;
+    --ring: 176 45% 34%;
 
     --radius: 0.75rem;
 
     /* Custom Brand Colors */
-    --cream: 40 30% 96%;
-    --cream-dark: 35 25% 90%;
-    --sage: 135 35% 55%;
-    --sage-light: 135 40% 92%;
-    --sage-dark: 135 30% 40%;
-    --rose: 350 55% 80%;
-    --rose-light: 350 60% 95%;
-    --rose-dark: 350 40% 55%;
-    --blush: 350 45% 92%;
-    --warm-brown: 25 30% 35%;
+    --cream: 36 50% 96%;
+    --cream-dark: 30 40% 88%;
+    --sage: 176 45% 34%;
+    --sage-light: 176 40% 90%;
+    --sage-dark: 176 45% 26%;
+    --rose: 12 70% 68%;
+    --rose-light: 14 75% 94%;
+    --rose-dark: 12 45% 45%;
+    --blush: 24 85% 90%;
+    --warm-brown: 22 32% 20%;
 
     /* Sidebar - matching brand */
-    --sidebar-background: 35 30% 95%;
-    --sidebar-foreground: 25 15% 25%;
-    --sidebar-primary: 135 35% 55%;
+    --sidebar-background: 32 35% 92%;
+    --sidebar-foreground: 22 32% 18%;
+    --sidebar-primary: 176 45% 34%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 350 45% 92%;
-    --sidebar-accent-foreground: 350 30% 35%;
-    --sidebar-border: 35 20% 88%;
-    --sidebar-ring: 135 35% 55%;
+    --sidebar-accent: 24 80% 88%;
+    --sidebar-accent-foreground: 24 30% 25%;
+    --sidebar-border: 28 25% 86%;
+    --sidebar-ring: 176 45% 34%;
   }
 
   .dark {
-    --background: 25 20% 10%;
-    --foreground: 35 20% 95%;
+    --background: 210 25% 10%;
+    --foreground: 35 30% 92%;
 
-    --card: 25 20% 12%;
-    --card-foreground: 35 20% 95%;
+    --card: 210 22% 12%;
+    --card-foreground: 35 30% 92%;
 
-    --popover: 25 20% 12%;
-    --popover-foreground: 35 20% 95%;
+    --popover: 210 22% 12%;
+    --popover-foreground: 35 30% 92%;
 
-    --primary: 135 35% 55%;
+    --primary: 176 45% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 30% 20%;
-    --secondary-foreground: 350 45% 85%;
+    --secondary: 24 30% 22%;
+    --secondary-foreground: 24 60% 88%;
 
-    --muted: 25 15% 18%;
-    --muted-foreground: 35 15% 60%;
+    --muted: 210 18% 16%;
+    --muted-foreground: 28 18% 68%;
 
-    --accent: 350 40% 25%;
-    --accent-foreground: 350 50% 90%;
+    --accent: 12 40% 28%;
+    --accent-foreground: 12 55% 88%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 25 15% 20%;
-    --input: 25 15% 20%;
-    --ring: 135 35% 55%;
+    --border: 210 18% 22%;
+    --input: 210 18% 22%;
+    --ring: 176 45% 50%;
 
-    --sidebar-background: 25 20% 10%;
-    --sidebar-foreground: 35 20% 95%;
-    --sidebar-primary: 135 35% 55%;
+    --sidebar-background: 210 25% 10%;
+    --sidebar-foreground: 35 30% 92%;
+    --sidebar-primary: 176 45% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 350 30% 20%;
-    --sidebar-accent-foreground: 350 50% 90%;
-    --sidebar-border: 25 15% 20%;
-    --sidebar-ring: 135 35% 55%;
+    --sidebar-accent: 24 30% 22%;
+    --sidebar-accent-foreground: 24 60% 88%;
+    --sidebar-border: 210 18% 22%;
+    --sidebar-ring: 176 45% 50%;
   }
 }
 
@@ -135,7 +135,7 @@
 
   /* Product Card */
   .product-card {
-    @apply bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-1;
+    @apply bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-300;
   }
 
   /* WhatsApp Button */

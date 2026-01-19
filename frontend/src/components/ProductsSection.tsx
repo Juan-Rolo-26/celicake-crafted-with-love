@@ -2,29 +2,33 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import cakeImage from "@/assets/cake-product.jpg";
-import breadImage from "@/assets/bread-product.jpg";
-import pastriesImage from "@/assets/pastries-product.jpg";
+import igDelicioso1 from "@/assets/instagram/ig-deliciosos-1-DTVfIS9jseG.jpg";
+import igDelicioso2 from "@/assets/instagram/ig-deliciosos-2-DTSy45hDj1t.jpg";
+import igDelicioso3 from "@/assets/instagram/ig-deliciosos-3-DTNfaDUjr17.jpg";
+import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 
 const ProductsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const headerVariants = fadeUp(32, 0.8);
+  const cardVariants = scaleIn(0.96, 0.5);
+  const gridVariants = staggerContainer(0.14, 0.2);
 
   const products = [
     {
-      image: cakeImage,
-      title: "Tortas Artesanales",
-      description: "Tortas decoradas para cumpleaños, eventos especiales y celebraciones. Personalizadas según tu gusto.",
+      image: igDelicioso1,
+      title: "Carrot cake sin TACC",
+      description: "Carrot cake húmedo con especias, ideal para celebraciones. Se prepara solo a pedido.",
     },
     {
-      image: breadImage,
-      title: "Panificados Sin Gluten",
-      description: "Pan fresco, pan de molde, medialunas y más. El sabor del pan casero, 100% libre de gluten.",
+      image: igDelicioso2,
+      title: "Alfajores de maicena",
+      description: "Clásicos alfajores sin gluten, listos para la merienda o para compartir.",
     },
     {
-      image: pastriesImage,
-      title: "Repostería Dulce",
-      description: "Galletitas, alfajores, macarons y delicias dulces para endulzar tu día sin preocupaciones.",
+      image: igDelicioso3,
+      title: "Arrollado salado",
+      description: "Relleno con atún, queso crema, huevo, aceitunas y zanahoria. Ideal para picadas.",
     },
   ];
 
@@ -40,9 +44,9 @@ const ProductsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          variants={headerVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
           className="text-center mb-16"
         >
           <span className="inline-block text-primary font-medium mb-4">
@@ -58,13 +62,18 @@ const ProductsSection = () => {
         </motion.div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => (
+        <motion.div
+          variants={gridVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {products.map((product) => (
             <motion.div
               key={product.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              variants={cardVariants}
+              transition={{ type: "spring", stiffness: 220, damping: 18 }}
+              whileHover={{ y: -8 }}
               className="product-card group"
             >
               <div className="relative h-64 overflow-hidden">
@@ -89,13 +98,13 @@ const ProductsSection = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          variants={fadeUp(20, 0.6)}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
           className="text-center mt-12"
         >
           <Button variant="whatsapp" size="lg" onClick={handleWhatsApp}>

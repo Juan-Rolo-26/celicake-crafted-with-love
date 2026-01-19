@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import GlutenFreeSection from "@/components/GlutenFreeSection";
 import AboutSection from "@/components/AboutSection";
 import ProductsSection from "@/components/ProductsSection";
+import ProductListSection from "@/components/ProductListSection";
 import HowToOrderSection from "@/components/HowToOrderSection";
 import InstagramSection from "@/components/InstagramSection";
 import FinalCTASection from "@/components/FinalCTASection";
@@ -18,6 +19,7 @@ const Index = () => {
         <GlutenFreeSection />
         <AboutSection />
         <ProductsSection />
+        <ProductListSection />
         <HowToOrderSection />
         <InstagramSection />
         <FinalCTASection />
