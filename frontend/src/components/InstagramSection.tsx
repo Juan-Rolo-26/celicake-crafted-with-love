@@ -60,7 +60,7 @@ const InstagramSection = () => {
             Momentos dulces en <span className="text-secondary">Instagram</span>
           </h2>
           <p className="text-lg text-foreground/80 max-w-xl mx-auto">
-            Mirá lo último, novedades y pedidos reales en [INSTAGRAM].
+            Mirá lo último, novedades y pedidos reales en @celicake_.
           </p>
         </motion.div>
 

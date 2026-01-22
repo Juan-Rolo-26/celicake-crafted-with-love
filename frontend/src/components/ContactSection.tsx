@@ -1,17 +1,44 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const fadeUpSoft = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const cardReveal = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-120px" });
-  const headerVariants = fadeUp(28, 0.8);
-  const gridVariants = staggerContainer(0.12, 0.2);
-  const cardVariants = scaleIn(0.97, 0.45);
+  const [name, setName] = useState("");
+  const [order, setOrder] = useState("");
+  const [details, setDetails] = useState("");
 
   const handleWhatsApp = () => {
     window.open(
@@ -20,112 +47,155 @@ const ContactSection = () => {
     );
   };
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const message = [
+      "Hola! Quiero hacer un pedido.",
+      name ? `Nombre: ${name}` : null,
+      order ? `Pedido: ${order}` : null,
+      details ? `Detalles: ${details}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.open(
+      `https://wa.me/543515157731?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+
   return (
-    <section id="contacto" ref={ref} className="py-24 bg-cream border-b border-cream-dark/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="contacto"
+      ref={ref}
+      className="relative py-28 bg-cream border-b border-cream-dark/20 overflow-hidden"
+    >
+      {/* manchas suaves */}
+      <div className="absolute -top-24 right-20 h-72 w-72 rounded-full bg-rose-light/40 blur-3xl" />
+      <div className="absolute bottom-10 left-16 h-64 w-64 rounded-full bg-sage-light/40 blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* HEADER */}
         <motion.div
-          variants={headerVariants}
+          variants={fadeUpSoft}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <span className="inline-block text-[11px] uppercase tracking-[0.35em] text-foreground/70 mb-4">
-            Pedidos / Contacto
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-4">
-            Tu pedido SIN TACC, acompañado de verdad
+          <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] text-secondary mb-6">
+            Acompañamos tu pedido
+            <br />
+            <span className="italic">de principio a fin</span>
           </h2>
-          <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            Escribinos y te ayudamos a elegir lo mejor para vos. Artesanal, seguro y hecho con amor.
+
+          <p className="text-lg text-foreground/75 max-w-2xl mx-auto leading-relaxed">
+            Respondemos cada mensaje de forma personal.
+            Sin automatismos, sin apuro, con el cuidado que merece lo SIN TACC.
           </p>
         </motion.div>
 
+        {/* GRID */}
         <motion.div
-          variants={gridVariants}
+          variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8"
+          className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10"
         >
+          {/* CONTACTO DIRECTO */}
           <motion.div
-            variants={cardVariants}
-            whileHover={{ y: -4 }}
-            className="rounded-[36px] border border-cream-dark/60 bg-card/95 p-8 shadow-elevated"
+            variants={cardReveal}
+            className="rounded-[40px] border border-cream-dark/60 bg-background/90 p-10 shadow-elevated"
           >
-            <div className="flex items-start justify-between gap-6 flex-wrap">
-              <div>
-                <h3 className="font-display text-2xl text-secondary">WhatsApp</h3>
-                <p className="mt-3 text-foreground/80">
-                  ¿No sabés por dónde empezar? Te guiamos paso a paso.
-                </p>
-              </div>
-              <span className="inline-flex items-center rounded-full bg-sage/25 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-secondary">
-                Apto celíacos · SIN TACC
-              </span>
-            </div>
+            <h3 className="font-display text-2xl text-secondary mb-4">
+              Contacto directo
+            </h3>
+
+            <p className="text-foreground/75 leading-relaxed mb-8">
+              Si no sabés qué elegir, si tenés dudas o necesitás algo especial,
+              escribinos. Te guiamos con calma y claridad.
+            </p>
 
             <Button
               onClick={handleWhatsApp}
-              className="mt-6 rounded-full bg-primary text-secondary text-[11px] uppercase tracking-[0.3em] px-6 py-3"
+              size="lg"
+              className="rounded-full bg-primary text-secondary px-8 py-4 text-[11px] uppercase tracking-[0.35em] shadow-soft hover:scale-105 transition-transform"
             >
               <MessageCircle size={18} />
-              Pedir por WhatsApp
+              Escribir por WhatsApp
             </Button>
-            <p className="mt-3 text-sm text-foreground/70">
-              Te respondemos rápido y con atención personalizada.
+
+            <p className="mt-4 text-sm text-foreground/65">
+              Respondemos rápido y con atención real.
             </p>
 
-            <div className="mt-8 rounded-3xl border border-cream-dark/60 bg-background/80 p-6">
-              <h4 className="font-display text-lg text-secondary">Instagram</h4>
-              <p className="mt-2 text-foreground/80">
-                Mirá ideas reales y pedidos del día en [INSTAGRAM].
+            <div className="mt-10 rounded-[28px] border border-cream-dark/60 bg-cream/40 p-6">
+              <h4 className="font-display text-lg text-secondary mb-2">
+                Instagram
+              </h4>
+              <p className="text-foreground/75 mb-4">
+                Ideas reales, pedidos del día y novedades.
               </p>
+
               <Button
                 variant="outline"
-                size="lg"
-                className="mt-4 rounded-full border-secondary/30 bg-card/90 text-secondary hover:border-secondary/60"
+                className="rounded-full border-secondary/30 bg-background text-secondary hover:border-secondary/60"
                 asChild
               >
-                <a href="https://instagram.com/celicake_" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://instagram.com/celicake_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Instagram size={18} />
-                  Ver Instagram
+                  @celicake_
                 </a>
               </Button>
-              <p className="mt-4 text-sm text-foreground/70">
-                Consultanos y coordinamos en [ZONA], [CIUDAD].
+
+              <p className="mt-4 text-sm text-foreground/65">
+                Atención en Córdoba, Argentina.
               </p>
             </div>
           </motion.div>
 
+          {/* FORMULARIO */}
           <motion.div
-            variants={cardVariants}
-            whileHover={{ y: -4 }}
-            className="rounded-[32px] border border-cream-dark/60 bg-background/80 p-8 shadow-soft"
+            variants={cardReveal}
+            className="rounded-[36px] border border-cream-dark/60 bg-background/85 p-10 shadow-soft"
           >
             <h3 className="font-display text-2xl text-secondary mb-2">
-              Si preferís, dejá tu mensaje
+              Dejanos tu mensaje
             </h3>
-            <p className="text-foreground/70 text-sm mb-6">
-              No es automático, leemos cada mensaje 💛
+            <p className="text-sm text-foreground/70 mb-8">
+              Leemos todo personalmente 💛
             </p>
-            <div className="space-y-4">
+
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <Input
-                placeholder="¿Cómo te llamás?"
-                className="rounded-2xl border-cream-dark/60 bg-cream/60 focus-visible:ring-primary"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Tu nombre"
+                className="rounded-2xl bg-cream/60 border-cream-dark/60 focus-visible:ring-primary"
               />
               <Input
+                value={order}
+                onChange={(event) => setOrder(event.target.value)}
                 placeholder="¿Qué te gustaría pedir?"
-                className="rounded-2xl border-cream-dark/60 bg-cream/60 focus-visible:ring-primary"
+                className="rounded-2xl bg-cream/60 border-cream-dark/60 focus-visible:ring-primary"
               />
               <Textarea
-                placeholder="Contanos para qué ocasión"
-                className="rounded-2xl min-h-[120px] border-cream-dark/60 bg-cream/60 focus-visible:ring-primary"
+                value={details}
+                onChange={(event) => setDetails(event.target.value)}
+                placeholder="Contanos la ocasión o cualquier detalle importante"
+                className="rounded-2xl min-h-[140px] bg-cream/60 border-cream-dark/60 focus-visible:ring-primary"
               />
-            </div>
-            <Button
-              className="mt-6 w-full rounded-full bg-primary text-secondary text-[11px] uppercase tracking-[0.3em]"
-            >
-              Quiero que me asesoren
-            </Button>
+
+              <Button
+                type="submit"
+                className="mt-4 w-full rounded-full bg-primary text-secondary px-6 py-4 text-[11px] uppercase tracking-[0.35em] shadow-soft hover:scale-105 transition-transform"
+              >
+                Quiero asesoramiento
+              </Button>
+            </form>
           </motion.div>
         </motion.div>
       </div>

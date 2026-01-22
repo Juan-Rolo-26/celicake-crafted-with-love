@@ -67,20 +67,13 @@ const AboutSection = () => {
               <img
                 src={aboutImage}
                 alt="Pastelería artesanal sin gluten CeliCake"
-                className="w-full h-[420px] lg:h-[520px] object-cover rounded-[40px]"
+                className="w-full h-[520px] lg:h-[640px] object-cover rounded-[40px]"
               />
             </div>
           </motion.div>
 
           {/* TEXTO */}
           <div>
-            <motion.span
-              variants={fadeUpSoft}
-              className="block text-[11px] uppercase tracking-[0.35em] text-secondary/60 mb-6"
-            >
-              Nuestra historia
-            </motion.span>
-
             <motion.h2
               variants={fadeUpSoft}
               className="font-display text-4xl sm:text-5xl leading-[1.05] text-secondary mb-8"
@@ -140,17 +133,8 @@ const AboutSection = () => {
                 >
                   {value}
                 </motion.span>
-              ))}
+                ))}
             </motion.div>
-
-            {/* CTA */}
-            <motion.a
-              variants={fadeUpSoft}
-              href="#contacto"
-              className="mt-10 inline-flex items-center justify-center rounded-full bg-primary px-7 py-4 text-[11px] uppercase tracking-[0.35em] text-secondary shadow-elevated hover:scale-105 transition-transform"
-            >
-              Hablemos de tu pedido
-            </motion.a>
           </div>
         </motion.div>
       </div>

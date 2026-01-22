@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <motion.footer
-      className="relative overflow-hidden bg-cream border-t border-cream-dark/60 pt-20 pb-10"
+      className="relative overflow-hidden bg-background/95 border-t border-cream-dark/70 pt-20 pb-10"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-120px" }}
@@ -87,7 +87,7 @@ const Footer = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-12 w-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary hover:bg-secondary hover:text-background transition-all duration-300 hover:scale-110"
+                  className="h-12 w-12 rounded-full border border-secondary/30 bg-background/90 flex items-center justify-center text-secondary shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-secondary/70 hover:bg-secondary hover:text-background"
                 >
                   <Icon size={22} />
                 </a>
@@ -95,7 +95,7 @@ const Footer = () => {
             </div>
 
             <p className="mt-5 text-sm text-foreground/70">
-              Coordinamos pedidos en <strong>[ZONA / CIUDAD]</strong>
+              Coordinamos pedidos en <strong>Córdoba, Argentina</strong>
             </p>
           </div>
         </motion.div>

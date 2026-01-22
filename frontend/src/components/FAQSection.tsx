@@ -37,7 +37,7 @@ const FAQSection = () => {
     {
       question: "¿Entregas/envíos?",
       answer:
-        "Coordinamos entregas y retiros en [ZONA]. Consultanos por envío.",
+        "Coordinamos entregas y retiros en Córdoba Capital y alrededores. Consultanos por envío.",
     },
     {
       question: "¿Hacen tortas para cumpleaños/eventos?",
@@ -57,7 +57,7 @@ const FAQSection = () => {
     {
       question: "¿Dónde están / zona?",
       answer:
-        "Trabajamos en [ZONA], [CIUDAD]. Coordinamos retiro o envío.",
+        "Trabajamos en Córdoba, Argentina. Coordinamos retiro o envío.",
     },
   ];
 
@@ -70,9 +70,6 @@ const FAQSection = () => {
           animate={isInView ? "show" : "hidden"}
           className="text-center mb-12"
         >
-          <span className="inline-block text-[11px] uppercase tracking-[0.35em] text-foreground/70 mb-4">
-            Preguntas
-          </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-4">
             Preguntas frecuentes
           </h2>

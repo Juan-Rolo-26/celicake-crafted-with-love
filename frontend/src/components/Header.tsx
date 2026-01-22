@@ -75,7 +75,7 @@ const Header = () => {
               <div className="hidden md:flex">
                 <Button
                   onClick={handleWhatsApp}
-                  className="rounded-full bg-primary text-secondary px-6 py-3 text-[11px] uppercase tracking-[0.35em] shadow-soft"
+                  className="rounded-full bg-primary/90 text-secondary px-7 py-3 text-[11px] uppercase tracking-[0.32em] border border-primary/40 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-background hover:border-secondary/70 hover:shadow-elevated"
                 >
                   <MessageCircle size={16} />
                   Pedir
@@ -84,7 +84,7 @@ const Header = () => {
 
               {/* Mobile button */}
               <button
-                className="md:hidden text-foreground"
+                className="md:hidden rounded-full border border-secondary/30 bg-background/90 p-2 text-secondary shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-background hover:border-secondary/70"
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
                 {mobileOpen ? <X size={26} /> : <Menu size={26} />}
@@ -116,7 +116,7 @@ const Header = () => {
 
                   <Button
                     onClick={handleWhatsApp}
-                    className="mt-4 rounded-full bg-primary text-secondary px-6 py-3 text-[11px] uppercase tracking-[0.35em]"
+                    className="mt-4 rounded-full bg-primary/90 text-secondary px-7 py-3 text-[11px] uppercase tracking-[0.32em] border border-primary/40 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-background hover:border-secondary/70 hover:shadow-elevated"
                   >
                     <MessageCircle size={16} />
                     Pedir por WhatsApp

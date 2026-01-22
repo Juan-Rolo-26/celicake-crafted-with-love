@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { CheckCircle, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import GlutenFreeBadge from "./GlutenFreeBadge";
 import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 
@@ -85,29 +85,6 @@ const GlutenFreeSection = () => {
           ))}
         </motion.div>
 
-        {/* Trust Statement */}
-        <motion.div
-          variants={fadeUp(20, 0.6)}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="mt-16 text-center space-y-4"
-        >
-          <div className="inline-flex items-center gap-3 bg-cream border border-cream-dark/40 px-6 py-3 rounded-full shadow-soft">
-            <CheckCircle className="w-5 h-5 text-sage" />
-            <span className="text-foreground font-medium">
-              Queremos que te sientas seguro/a en cada pedido.
-            </span>
-          </div>
-          <p className="text-sm text-foreground/70 max-w-2xl mx-auto">
-            Siempre consultanos por alergias adicionales (lácteos, frutos secos, etc.).
-          </p>
-          <a
-            href="#contacto"
-            className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-[11px] uppercase tracking-[0.3em] text-secondary shadow-elevated hover:shadow-soft transition-all duration-300"
-          >
-            Soy celíaco/a, quiero pedir seguro
-          </a>
-        </motion.div>
       </div>
     </section>
   );

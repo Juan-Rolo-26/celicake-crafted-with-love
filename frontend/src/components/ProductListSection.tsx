@@ -1,12 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import igCapture010 from "@/assets/instagram/Captura de pantalla 2026-01-22 024010.png";
+import igCapture025 from "@/assets/instagram/Captura de pantalla 2026-01-22 024025.png";
+import igCapture039 from "@/assets/instagram/Captura de pantalla 2026-01-22 024039.png";
+import igCapture112 from "@/assets/instagram/Captura de pantalla 2026-01-22 024112.png";
 import igDelicioso3 from "@/assets/instagram/ig-deliciosos-3-DTNfaDUjr17.jpg";
-import igPost2 from "@/assets/instagram/ig-post-2-DTpyrr5jqA4.jpg";
-import igPost4 from "@/assets/instagram/ig-post-4-DTk0aSEjlRR.jpg";
-import igProduct1 from "@/assets/instagram/ig-product-1-DTfnOoGkSgS.jpg";
-import breadProduct from "@/assets/bread-product.jpg";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const ProductListSection = () => {
@@ -17,7 +16,7 @@ const ProductListSection = () => {
     {
       title: "Sin azúcar agregada",
       tone: "rose",
-      image: igDelicioso3,
+      image: igCapture010,
       items: [
         "Budines sin azúcar agregada",
         "Alfajores sin azúcar agregada con nueces",
@@ -27,7 +26,7 @@ const ProductListSection = () => {
     {
       title: "Sin azúcar y sin harinas",
       tone: "cream",
-      image: igProduct1,
+      image: igCapture025,
       items: [
         "Pepas de membrillo (14 / 15 unidades)",
         "Palitos dual choco blanco / negro",
@@ -39,7 +38,7 @@ const ProductListSection = () => {
     {
       title: "Sin lácteos",
       tone: "sage",
-      image: igPost2,
+      image: igCapture112,
       items: [
         "Budín de manzana con nueces",
         "Budín de limón con glaseado",
@@ -53,7 +52,7 @@ const ProductListSection = () => {
       title: "Dulce",
       subtitle: "Tartas, budines y alfajores",
       tone: "rose",
-      image: igPost4,
+      image: igCapture039,
       items: [
         "Tartas grandes (26 cm)",
         "Tartitas individuales (lemon pie, marquise, frutillas, peras)",
@@ -68,7 +67,7 @@ const ProductListSection = () => {
       title: "Salado",
       subtitle: "Clásicos y panificados",
       tone: "sage",
-      image: breadProduct,
+      image: igDelicioso3,
       items: [
         "Pan de lomito",
         "Criollitos (mínimo 8)",
@@ -82,16 +81,10 @@ const ProductListSection = () => {
     },
   ];
 
-  const toneColor = {
-    rose: "bg-rose/60",
-    sage: "bg-sage/80",
-    cream: "bg-secondary/30",
-  };
-
   const tonePanel = {
-    rose: "bg-rose/15 border-rose/30",
-    sage: "bg-sage/15 border-sage/30",
-    cream: "bg-cream/80 border-cream-dark/70",
+    rose: "bg-blush/45",
+    sage: "bg-sage/15",
+    cream: "bg-cream/90",
   };
 
   const handleWhatsApp = () => {
@@ -113,19 +106,14 @@ const ProductListSection = () => {
         <div className="absolute bottom-10 left-10 h-52 w-52 rounded-full bg-sage-light/50 blur-3xl" />
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative w-full">
         {/* HEADER */}
         <motion.div
           variants={fadeUp(24, 0.7)}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="text-center mb-14"
+          className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center mb-14"
         >
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.35em] text-foreground/70">
-            <Sparkles className="h-4 w-4 text-primary" />
-            Carta artesanal SIN TACC
-          </span>
-
           <h2 className="mt-5 font-display text-3xl sm:text-4xl text-secondary">
             Nuestra carta, pensada para cuidarte
           </h2>
@@ -136,15 +124,14 @@ const ProductListSection = () => {
           </p>
 
           <div className="mt-6 flex justify-center gap-3 flex-wrap text-[10px] uppercase tracking-[0.35em]">
-            <span className="rounded-full border border-sage/40 bg-sage/25 px-4 py-2">
-              SIN TACC
-            </span>
-            <span className="rounded-full border border-cream-dark/60 bg-background/80 px-4 py-2">
-              Apto celíacos
-            </span>
-            <span className="rounded-full border border-cream-dark/60 bg-background/80 px-4 py-2">
-              Hecho a pedido
-            </span>
+            {["Sin TACC", "Apto celíacos", "Hecho a pedido"].map((label) => (
+              <span
+                key={label}
+                className="rounded-full border border-cream-dark/60 bg-background/80 px-4 py-2"
+              >
+                {label}
+              </span>
+            ))}
           </div>
         </motion.div>
 
@@ -153,81 +140,55 @@ const ProductListSection = () => {
           variants={staggerContainer(0.12, 0.2)}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="space-y-14"
+          className="space-y-12"
         >
           {categories.map((cat, index) => {
             const isReversed = index % 2 !== 0;
             const panelStyle = tonePanel[cat.tone as keyof typeof tonePanel];
+            const itemsText = cat.items.join(", ");
             return (
-            <motion.div
-              key={cat.title}
-              variants={fadeUp(20, 0.5)}
-              className="overflow-hidden rounded-[36px] border border-cream-dark/60 bg-background/80 shadow-elevated"
-            >
-              <div className={`grid md:grid-cols-[1.1fr_0.9fr] ${isReversed ? "md:grid-cols-[0.9fr_1.1fr]" : ""}`}>
-                <div className={`relative ${isReversed ? "md:order-2" : ""}`}>
-                  <img
-                    src={cat.image}
-                    alt={`Categoria ${cat.title}`}
-                    className="h-full w-full object-cover min-h-[260px] md:min-h-[420px]"
-                  />
-                </div>
-                <div className={`flex flex-col justify-center px-8 py-10 md:px-10 md:py-12 text-center md:text-left border-t md:border-t-0 border-cream-dark/50 ${panelStyle}`}>
-                  <h3 className="font-display text-3xl sm:text-4xl text-secondary">
-                    {cat.title}
-                  </h3>
-                  {cat.subtitle && (
-                    <p className="mt-3 text-sm uppercase tracking-[0.25em] text-secondary/60">
-                      {cat.subtitle}
+              <motion.div
+                key={cat.title}
+                variants={fadeUp(20, 0.5)}
+                className="w-full overflow-hidden border-y border-cream-dark/60 bg-background/80"
+              >
+                <div className={`grid md:grid-cols-2 ${isReversed ? "md:[&>div:first-child]:order-2" : ""}`}>
+                  <div className="relative">
+                    <img
+                      src={cat.image}
+                      alt={`Categoria ${cat.title}`}
+                      className="h-full w-full object-cover min-h-[260px] md:min-h-[560px]"
+                    />
+                  </div>
+                  <div className={`flex flex-col justify-center px-10 py-12 md:px-16 md:py-16 text-center md:text-left ${panelStyle}`}>
+                    <h3 className="font-display text-4xl sm:text-6xl text-secondary lowercase">
+                      {cat.title}
+                    </h3>
+                    {cat.subtitle && (
+                      <p className="mt-4 text-[12px] uppercase tracking-[0.35em] text-secondary/60">
+                        {cat.subtitle}
+                      </p>
+                    )}
+                    <div className="mt-6 h-px w-24 bg-secondary/35 mx-auto md:mx-0" />
+                    <p className="mt-6 text-base sm:text-lg text-secondary/75 leading-relaxed max-w-xl">
+                      {itemsText}
                     </p>
-                  )}
-                  <div className="mt-6 h-px w-24 bg-secondary/30 mx-auto md:mx-0" />
-                  <ul className="mt-6 grid gap-2 text-sm text-secondary/75 sm:grid-cols-2">
-                    {cat.items.map((item) => (
-                      <li key={item} className="flex gap-3 items-start">
-                        <span
-                          className={`mt-2 h-1.5 w-1.5 rounded-full ${toneColor[cat.tone]}`}
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 h-px w-24 bg-secondary/30 mx-auto md:mx-0" />
-                  <Button
-                    onClick={handleWhatsApp}
-                    variant="outline"
-                    size="sm"
-                    className="mt-6 self-center md:self-start rounded-full text-[11px] uppercase tracking-[0.35em]"
-                  >
-                    Hacé tu pedido
-                  </Button>
+                    <div className="mt-6 h-px w-24 bg-secondary/35 mx-auto md:mx-0" />
+                    <Button
+                      onClick={handleWhatsApp}
+                      variant="outline"
+                      size="sm"
+                      className="mt-6 self-center md:self-start rounded-none border-secondary/60 bg-transparent text-[12px] uppercase tracking-[0.35em] text-secondary hover:bg-secondary/10"
+                    >
+                      Hacé tu pedido
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
             );
           })}
         </motion.div>
 
-        {/* CTA */}
-        <motion.div
-          variants={fadeUp(20, 0.6)}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="text-center mt-16"
-        >
-          <p className="mb-5 text-sm text-foreground/70">
-            Trabajamos con cupos semanales y producción cuidada.  
-            Consultanos por disponibilidad o alergias adicionales.
-          </p>
-
-          <Button
-            onClick={handleWhatsApp}
-            className="rounded-full bg-primary text-secondary px-6 py-3 text-[11px] uppercase tracking-[0.35em] hover:scale-105 transition-transform"
-          >
-            <MessageCircle size={16} />
-            Consultanos y armamos tu pedido
-          </Button>
-        </motion.div>
       </div>
     </section>
   );

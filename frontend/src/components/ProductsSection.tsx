@@ -52,9 +52,6 @@ const ProductsSection = () => {
           animate={isInView ? "show" : "hidden"}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[11px] uppercase tracking-[0.35em] text-foreground/70 mb-4">
-            Productos
-          </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-6">
             Dulces seguros, <span className="text-primary">sabores que enamoran</span>
           </h2>

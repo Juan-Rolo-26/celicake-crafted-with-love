@@ -47,9 +47,6 @@ const HowToOrderSection = () => {
           animate={isInView ? "show" : "hidden"}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[11px] uppercase tracking-[0.35em] text-foreground/70 mb-4">
-            Cómo pedir
-          </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-6">
             Tu pedido en <span className="text-primary">4 pasos simples</span>
           </h2>
