@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 const WhatsAppFloating = () => {
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/543515157731?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos",
+      "https://wa.me/543515157731?text=Hola!%20Quiero%20hacer%20un%20pedido",
       "_blank"
     );
   };
@@ -14,10 +14,10 @@ const WhatsAppFloating = () => {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 200 }}
-      whileHover={{ scale: 1.12 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
       onClick={handleWhatsApp}
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary shadow-elevated flex items-center justify-center text-primary-foreground"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary shadow-elevated flex items-center justify-center text-secondary"
       aria-label="Contactar por WhatsApp"
     >
       <motion.div

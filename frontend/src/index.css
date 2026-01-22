@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,101 +6,101 @@
 
 @layer base {
   :root {
-    /* Celicake Brand Colors - Coastal & Warm */
-    --background: 36 45% 97%;
-    --foreground: 22 32% 18%;
+    /* CeliCake Brand Colors - Palette locked */
+    --background: 25 100% 98%;
+    --foreground: 20 32% 18%;
 
-    --card: 36 40% 98%;
-    --card-foreground: 22 32% 18%;
+    --card: 26 44% 89%;
+    --card-foreground: 20 32% 18%;
 
-    --popover: 36 40% 98%;
-    --popover-foreground: 22 32% 18%;
+    --popover: 26 44% 89%;
+    --popover-foreground: 20 32% 18%;
 
-    /* Primary - Deep Teal */
-    --primary: 176 45% 34%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary - Soft Green */
+    --primary: 151 28% 65%;
+    --primary-foreground: 22 26% 33%;
 
-    /* Secondary - Warm Apricot */
-    --secondary: 24 80% 88%;
-    --secondary-foreground: 24 30% 25%;
+    /* Secondary - Cocoa */
+    --secondary: 22 26% 33%;
+    --secondary-foreground: 25 100% 98%;
 
-    /* Muted - Sand */
-    --muted: 32 35% 92%;
-    --muted-foreground: 24 18% 42%;
+    /* Muted - Warm Beige */
+    --muted: 22 55% 91%;
+    --muted-foreground: 23 12% 43%;
 
-    /* Accent - Coral */
-    --accent: 12 70% 68%;
-    --accent-foreground: 12 32% 25%;
+    /* Accent - Peach */
+    --accent: 18 69% 83%;
+    --accent-foreground: 20 32% 18%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 20 32% 18%;
+    --destructive-foreground: 25 100% 98%;
 
-    --border: 28 25% 86%;
-    --input: 28 25% 86%;
-    --ring: 176 45% 34%;
+    --border: 22 28% 86%;
+    --input: 22 28% 86%;
+    --ring: 338 52% 81%;
 
     --radius: 0.75rem;
 
     /* Custom Brand Colors */
-    --cream: 36 50% 96%;
-    --cream-dark: 30 40% 88%;
-    --sage: 176 45% 34%;
-    --sage-light: 176 40% 90%;
-    --sage-dark: 176 45% 26%;
-    --rose: 12 70% 68%;
-    --rose-light: 14 75% 94%;
-    --rose-dark: 12 45% 45%;
-    --blush: 24 85% 90%;
-    --warm-brown: 22 32% 20%;
+    --cream: 22 55% 91%;
+    --cream-dark: 22 28% 86%;
+    --sage: 151 28% 65%;
+    --sage-light: 151 28% 65%;
+    --sage-dark: 22 26% 33%;
+    --rose: 35 40% 75%;
+    --rose-light: 26 44% 89%;
+    --rose-dark: 22 26% 33%;
+    --blush: 18 69% 83%;
+    --warm-brown: 20 32% 18%;
 
     /* Sidebar - matching brand */
-    --sidebar-background: 32 35% 92%;
-    --sidebar-foreground: 22 32% 18%;
-    --sidebar-primary: 176 45% 34%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 24 80% 88%;
-    --sidebar-accent-foreground: 24 30% 25%;
-    --sidebar-border: 28 25% 86%;
-    --sidebar-ring: 176 45% 34%;
+    --sidebar-background: 25 100% 98%;
+    --sidebar-foreground: 20 32% 18%;
+    --sidebar-primary: 151 28% 65%;
+    --sidebar-primary-foreground: 22 26% 33%;
+    --sidebar-accent: 18 69% 83%;
+    --sidebar-accent-foreground: 20 32% 18%;
+    --sidebar-border: 22 28% 86%;
+    --sidebar-ring: 151 28% 65%;
   }
 
   .dark {
-    --background: 210 25% 10%;
-    --foreground: 35 30% 92%;
+    --background: 20 32% 18%;
+    --foreground: 25 100% 98%;
 
-    --card: 210 22% 12%;
-    --card-foreground: 35 30% 92%;
+    --card: 22 26% 33%;
+    --card-foreground: 25 100% 98%;
 
-    --popover: 210 22% 12%;
-    --popover-foreground: 35 30% 92%;
+    --popover: 22 26% 33%;
+    --popover-foreground: 25 100% 98%;
 
-    --primary: 176 45% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 151 28% 65%;
+    --primary-foreground: 22 26% 33%;
 
-    --secondary: 24 30% 22%;
-    --secondary-foreground: 24 60% 88%;
+    --secondary: 22 26% 33%;
+    --secondary-foreground: 25 100% 98%;
 
-    --muted: 210 18% 16%;
-    --muted-foreground: 28 18% 68%;
+    --muted: 22 26% 28%;
+    --muted-foreground: 22 28% 86%;
 
-    --accent: 12 40% 28%;
-    --accent-foreground: 12 55% 88%;
+    --accent: 18 69% 83%;
+    --accent-foreground: 20 32% 18%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 20 32% 18%;
+    --destructive-foreground: 25 100% 98%;
 
-    --border: 210 18% 22%;
-    --input: 210 18% 22%;
-    --ring: 176 45% 50%;
+    --border: 22 26% 28%;
+    --input: 22 26% 28%;
+    --ring: 151 28% 65%;
 
-    --sidebar-background: 210 25% 10%;
-    --sidebar-foreground: 35 30% 92%;
-    --sidebar-primary: 176 45% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 24 30% 22%;
-    --sidebar-accent-foreground: 24 60% 88%;
-    --sidebar-border: 210 18% 22%;
-    --sidebar-ring: 176 45% 50%;
+    --sidebar-background: 20 32% 18%;
+    --sidebar-foreground: 25 100% 98%;
+    --sidebar-primary: 151 28% 65%;
+    --sidebar-primary-foreground: 22 26% 33%;
+    --sidebar-accent: 18 69% 83%;
+    --sidebar-accent-foreground: 20 32% 18%;
+    --sidebar-border: 22 26% 28%;
+    --sidebar-ring: 151 28% 65%;
   }
 }
 
@@ -111,14 +111,20 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 19px;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
 
+  a,
+  button {
+    @apply transition-colors duration-300;
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+    @apply font-display text-secondary;
   }
 }
 
@@ -135,28 +141,32 @@
 
   /* Product Card */
   .product-card {
-    @apply bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-300;
+    @apply bg-cream border border-cream-dark/40 rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-300;
   }
 
   /* WhatsApp Button */
   .whatsapp-button {
-    @apply inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium shadow-soft hover:shadow-elevated hover:scale-105 transition-all duration-300;
+    @apply inline-flex items-center gap-3 bg-primary text-secondary px-6 py-3 rounded-full font-medium shadow-soft hover:shadow-elevated hover:scale-[1.03] transition-all duration-300;
   }
 
   /* Step Card */
   .step-card {
-    @apply flex flex-col items-center text-center p-6 rounded-2xl bg-cream;
+    @apply flex flex-col items-center text-center p-6 rounded-2xl bg-cream border border-cream-dark/40 shadow-soft;
   }
 }
 
 @layer utilities {
   /* Typography */
   .font-display {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', 'Times New Roman', serif;
   }
 
   .font-sans {
-    font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .font-logo {
+    font-family: 'Great Vibes', 'Playfair Display', serif;
   }
 
   /* Custom Colors as Utilities */

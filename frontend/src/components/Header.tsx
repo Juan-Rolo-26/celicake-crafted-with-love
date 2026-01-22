@@ -1,134 +1,133 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      setVisible(window.scrollY > window.innerHeight * 0.6);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleWhatsApp = () => {
+    window.open(
+      "https://wa.me/543515157731?text=Hola!%20Quiero%20hacer%20un%20pedido",
+      "_blank"
+    );
+  };
 
   const navItems = [
     { label: "Inicio", href: "#inicio" },
-    { label: "Sin Gluten", href: "#sin-gluten" },
-    { label: "Nosotros", href: "#nosotros" },
     { label: "Productos", href: "#productos" },
-    { label: "Pedidos", href: "#pedidos" },
+    { label: "Nosotros", href: "#nosotros" },
+    { label: "Contacto", href: "#contacto" },
   ];
 
-  const navLinkClassName = (isMobile = false) =>
-    `relative text-foreground/80 transition-all font-medium ${
-      isScrolled
-        ? "px-1 py-1 hover:text-foreground"
-        : "px-1 py-1 hover:text-foreground"
-    }${isMobile ? " w-full text-left" : ""} after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full`;
-
-  const handleWhatsApp = () => {
-    window.open("https://wa.me/543515157731?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos", "_blank");
-  };
-
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-cream-dark/60 py-3"
-          : "bg-white/80 backdrop-blur-md border-b border-cream-dark/60 py-4"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-3">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cream shadow-soft">
-              <img
-                src="/images/logo_celicake.png"
-                alt="Celicake"
-                className="h-10 w-10 object-contain"
-              />
-            </span>
-            <div className="leading-tight">
-              <span className="block font-display text-2xl font-semibold text-foreground">
-                Celicake
-              </span>
-              <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                sin gluten
-              </span>
-            </div>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={navLinkClassName()}
-              >
-                {item.label}
+    <AnimatePresence>
+      {visible && (
+        <motion.header
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-cream-dark/60"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-20">
+              {/* Logo */}
+              <a href="#inicio" className="flex items-center gap-3">
+                <img
+                  src="/images/logo_celicake.png"
+                  alt="CeliCake"
+                  className="h-12 w-12 object-contain"
+                />
+                <div className="leading-tight">
+                  <span className="block font-display text-2xl text-foreground">
+                    CeliCake
+                  </span>
+                  <span className="block text-[10px] uppercase tracking-[0.3em] text-foreground/60">
+                    sin gluten
+                  </span>
+                </div>
               </a>
-            ))}
-          </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button
-              onClick={handleWhatsApp}
-              className="rounded-2xl bg-foreground text-background hover:bg-foreground/90 shadow-elevated"
-            >
-              <MessageCircle size={18} />
-              WhatsApp
-            </Button>
+              {/* Desktop nav */}
+              <nav className="hidden md:flex items-center gap-6">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="text-[11px] uppercase tracking-[0.35em] text-foreground/70 hover:text-foreground transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+
+              {/* CTA */}
+              <div className="hidden md:flex">
+                <Button
+                  onClick={handleWhatsApp}
+                  className="rounded-full bg-primary text-secondary px-6 py-3 text-[11px] uppercase tracking-[0.35em] shadow-soft"
+                >
+                  <MessageCircle size={16} />
+                  Pedir
+                </Button>
+              </div>
+
+              {/* Mobile button */}
+              <button
+                className="md:hidden text-foreground"
+                onClick={() => setMobileOpen(!mobileOpen)}
+              >
+                {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+              </button>
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.nav
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-cream-dark/60 shadow-elevated py-4 px-4"
-          >
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={navLinkClassName(true)}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-              <Button
-                onClick={handleWhatsApp}
-                className="mt-2 rounded-2xl bg-foreground text-background hover:bg-foreground/90 shadow-elevated"
+          {/* Mobile menu */}
+          <AnimatePresence>
+            {mobileOpen && (
+              <motion.nav
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="md:hidden bg-cream border-t border-cream-dark/60"
               >
-                <MessageCircle size={18} />
-                WhatsApp
-              </Button>
-            </div>
-          </motion.nav>
-        )}
-      </div>
-    </motion.header>
+                <div className="px-4 py-6 flex flex-col gap-5">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-[11px] uppercase tracking-[0.35em] text-foreground/80"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+
+                  <Button
+                    onClick={handleWhatsApp}
+                    className="mt-4 rounded-full bg-primary text-secondary px-6 py-3 text-[11px] uppercase tracking-[0.35em]"
+                  >
+                    <MessageCircle size={16} />
+                    Pedir por WhatsApp
+                  </Button>
+                </div>
+              </motion.nav>
+            )}
+          </AnimatePresence>
+        </motion.header>
+      )}
+    </AnimatePresence>
   );
 };
 

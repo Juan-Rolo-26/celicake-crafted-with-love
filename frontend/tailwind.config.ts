@@ -19,8 +19,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Playfair Display", "Georgia", "serif"],
-        sans: ["Lato", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        display: ["Playfair Display", "Times New Roman", "serif"],
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -92,8 +92,8 @@ export default {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 4px 20px -4px hsla(25, 30%, 35%, 0.1)",
-        elevated: "0 8px 30px -8px hsla(25, 30%, 35%, 0.15)",
+        soft: "0 4px 20px -4px hsla(20, 32%, 18%, 0.12)",
+        elevated: "0 10px 30px -8px hsla(20, 32%, 18%, 0.18)",
       },
       keyframes: {
         "accordion-down": {

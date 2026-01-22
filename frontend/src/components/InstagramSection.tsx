@@ -2,10 +2,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import igPost1 from "@/assets/instagram/ig-post-1-DTiJDYFjt79.jpg";
-import igPost2 from "@/assets/instagram/ig-post-2-DTpyrr5jqA4.jpg";
-import igPost3 from "@/assets/instagram/ig-post-3-DTnIx7GjhYP.jpg";
-import igPost4 from "@/assets/instagram/ig-post-4-DTk0aSEjlRR.jpg";
+import igDelicioso1 from "@/assets/instagram/ig-deliciosos-1-DTVfIS9jseG.jpg";
+import igDelicioso2 from "@/assets/instagram/ig-deliciosos-2-DTSy45hDj1t.jpg";
+import igDelicioso3 from "@/assets/instagram/ig-deliciosos-3-DTNfaDUjr17.jpg";
+import igProduct1 from "@/assets/instagram/ig-product-1-DTfnOoGkSgS.jpg";
+import igProduct2 from "@/assets/instagram/ig-product-2-DTc2ADBjvV0.jpg";
+import igProduct3 from "@/assets/instagram/ig-product-3-DTatXGbkcQc.jpg";
 import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 
 const InstagramSection = () => {
@@ -18,29 +20,33 @@ const InstagramSection = () => {
   // Latest Instagram post previews
   const instagramImages = [
     {
-      image: igPost1,
-      alt: "Bocamatero libre de gluten con alfajores y palitos dulces",
-      href: "https://www.instagram.com/p/DTiJDYFjt79/",
+      image: igProduct1,
+      alt: "Torta de chocolate artesanal sin gluten",
     },
     {
-      image: igPost2,
-      alt: "Dulzuras para compartir con masas secas y tarta de ricota",
-      href: "https://www.instagram.com/p/DTpyrr5jqA4/",
+      image: igDelicioso1,
+      alt: "Galletitas bañadas en chocolate",
     },
     {
-      image: igPost3,
-      alt: "Carrot cake sin TACC y sin azucar agregada",
-      href: "https://www.instagram.com/p/DTnIx7GjhYP/",
+      image: igProduct2,
+      alt: "Postre sin gluten con fruta",
     },
     {
-      image: igPost4,
-      alt: "Budines con crema pastelera y dulce de leche",
-      href: "https://www.instagram.com/p/DTk0aSEjlRR/",
+      image: igDelicioso2,
+      alt: "Pastelería artesanal de temporada",
+    },
+    {
+      image: igProduct3,
+      alt: "Brownies y dulces clásicos",
+    },
+    {
+      image: igDelicioso3,
+      alt: "Budines y opciones sin azúcar",
     },
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-rose-light">
+    <section ref={ref} className="py-24 bg-background border-b border-cream-dark/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -50,12 +56,11 @@ const InstagramSection = () => {
           className="text-center mb-12"
         >
           <Instagram className="w-10 h-10 text-rose-dark mx-auto mb-4" />
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground mb-4">
-            Seguinos en <span className="text-rose-dark">Instagram</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-4">
+            Momentos dulces en <span className="text-secondary">Instagram</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Descubrí nuestras creaciones, novedades y momentos dulces en
-            @celicake_
+          <p className="text-lg text-foreground/80 max-w-xl mx-auto">
+            Mirá lo último, novedades y pedidos reales en [INSTAGRAM].
           </p>
         </motion.div>
 
@@ -64,26 +69,26 @@ const InstagramSection = () => {
           variants={gridVariants}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+          className="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 mb-12"
         >
           {instagramImages.map((item, index) => (
             <motion.a
               key={index}
-              href={item.href}
+              href="https://instagram.com/celicake_"
               target="_blank"
               rel="noopener noreferrer"
               variants={cardVariants}
               transition={{ type: "spring", stiffness: 240, damping: 20 }}
-              whileHover={{ y: -6 }}
-              className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer"
+              whileHover={{ y: -4 }}
+              className="relative aspect-[4/5] rounded-3xl overflow-hidden group cursor-pointer"
             >
               <img
                 src={item.image}
                 alt={item.alt}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-rose-dark/0 group-hover:bg-rose-dark/30 transition-colors duration-300 flex items-center justify-center">
-                <Instagram className="w-8 h-8 text-card opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Instagram className="w-8 h-8 text-background opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </motion.a>
           ))}
@@ -103,7 +108,7 @@ const InstagramSection = () => {
               rel="noopener noreferrer"
             >
               <Instagram size={20} />
-              Seguinos en Instagram
+              Ver Instagram
             </a>
           </Button>
         </motion.div>

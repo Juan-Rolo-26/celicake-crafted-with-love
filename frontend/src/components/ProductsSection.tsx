@@ -1,10 +1,20 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import igDelicioso1 from "@/assets/instagram/ig-deliciosos-1-DTVfIS9jseG.jpg";
 import igDelicioso2 from "@/assets/instagram/ig-deliciosos-2-DTSy45hDj1t.jpg";
 import igDelicioso3 from "@/assets/instagram/ig-deliciosos-3-DTNfaDUjr17.jpg";
+import igPost1 from "@/assets/instagram/ig-post-1-DTiJDYFjt79.jpg";
+import igProduct1 from "@/assets/instagram/ig-product-1-DTfnOoGkSgS.jpg";
+import igProduct3 from "@/assets/instagram/ig-product-3-DTatXGbkcQc.jpg";
+import igPost2 from "@/assets/instagram/ig-post-2-DTpyrr5jqA4.jpg";
+import igPost3 from "@/assets/instagram/ig-post-3-DTnIx7GjhYP.jpg";
+import igPostAlt from "@/assets/instagram/ig-post-4-DTk0aSEjlRR.jpg";
+import igCapture207 from "@/assets/instagram/Captura de pantalla 2026-01-22 024207.png";
+import igCapture010 from "@/assets/instagram/Captura de pantalla 2026-01-22 024010.png";
+import igCapture025 from "@/assets/instagram/Captura de pantalla 2026-01-22 024025.png";
+import igCapture039 from "@/assets/instagram/Captura de pantalla 2026-01-22 024039.png";
+import igCapture058 from "@/assets/instagram/Captura de pantalla 2026-01-22 024058.png";
+import igCapture112 from "@/assets/instagram/Captura de pantalla 2026-01-22 024112.png";
 import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 
 const ProductsSection = () => {
@@ -14,33 +24,26 @@ const ProductsSection = () => {
   const cardVariants = scaleIn(0.96, 0.5);
   const gridVariants = staggerContainer(0.14, 0.2);
 
-  const products = [
-    {
-      image: igDelicioso1,
-      title: "Carrot cake sin TACC",
-      description: "Carrot cake húmedo con especias, ideal para celebraciones. Se prepara solo a pedido.",
-    },
-    {
-      image: igDelicioso2,
-      title: "Alfajores de maicena",
-      description: "Clásicos alfajores sin gluten, listos para la merienda o para compartir.",
-    },
-    {
-      image: igDelicioso3,
-      title: "Arrollado salado",
-      description: "Relleno con atún, queso crema, huevo, aceitunas y zanahoria. Ideal para picadas.",
-    },
+  const productImages = [
+    igProduct1,
+    igCapture207,
+    igProduct3,
+    igDelicioso1,
+    igDelicioso2,
+    igDelicioso3,
+    igPost1,
+    igPost2,
+    igPost3,
+    igPostAlt,
+    igCapture010,
+    igCapture025,
+    igCapture039,
+    igCapture058,
+    igCapture112,
   ];
 
-  const handleWhatsApp = () => {
-    window.open(
-      "https://wa.me/543515157731?text=Hola!%20Me%20gustaría%20consultar%20sobre%20sus%20productos",
-      "_blank"
-    );
-  };
-
   return (
-    <section id="productos" ref={ref} className="py-24 bg-cream">
+    <section id="productos" ref={ref} className="py-24 bg-background border-b border-cream-dark/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -49,68 +52,41 @@ const ProductsSection = () => {
           animate={isInView ? "show" : "hidden"}
           className="text-center mb-16"
         >
-          <span className="inline-block text-primary font-medium mb-4">
-            Nuestros Productos
+          <span className="inline-block text-[11px] uppercase tracking-[0.35em] text-foreground/70 mb-4">
+            Productos
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground mb-6">
-            Deliciosos y <span className="text-primary">sin gluten</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-6">
+            Dulces seguros, <span className="text-primary">sabores que enamoran</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Descubrí nuestra variedad de productos artesanales, elaborados con
-            amor y los mejores ingredientes sin TACC.
+          <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            Pastelería SIN GLUTEN con textura real, cuidada para celíacos y para
+            quienes buscan algo rico y confiable.
           </p>
         </motion.div>
 
-        {/* Products Grid */}
         <motion.div
           variants={gridVariants}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6"
         >
-          {products.map((product) => (
+          {productImages.map((image, index) => (
             <motion.div
-              key={product.title}
+              key={`${index}-product`}
               variants={cardVariants}
               transition={{ type: "spring", stiffness: 220, damping: 18 }}
-              whileHover={{ y: -8 }}
-              className="product-card group"
+              whileHover={{ y: -6 }}
+              className="group rounded-3xl border border-cream-dark/60 bg-card/90 shadow-soft hover:shadow-elevated transition-all duration-500 overflow-hidden"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src={image}
+                  alt={`Producto CeliCake ${index + 1}`}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
-                <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 bg-sage-light text-sage-dark text-xs font-semibold rounded-full">
-                    Sin Gluten
-                  </span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                  {product.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {product.description}
-                </p>
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* CTA */}
-        <motion.div
-          variants={fadeUp(20, 0.6)}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="text-center mt-12"
-        >
-          <Button variant="whatsapp" size="lg" onClick={handleWhatsApp}>
-            <MessageCircle size={20} />
-            Consultanos por WhatsApp
-          </Button>
         </motion.div>
       </div>
     </section>

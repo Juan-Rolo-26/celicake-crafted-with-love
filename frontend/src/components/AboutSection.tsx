@@ -1,109 +1,157 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import aboutImage from "@/assets/about-bakery.jpg";
-import { fadeLeft, fadeRight, scaleIn, staggerContainer } from "@/lib/motion";
+import aboutImage from "@/assets/instagram/ig-product-2-DTc2ADBjvV0.jpg";
+import { staggerContainer } from "@/lib/motion";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const fadeUpSoft = {
+  hidden: { opacity: 0, y: 26 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const imageReveal = {
+  hidden: { opacity: 0, scale: 1.04 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const chipReveal = {
+  hidden: { opacity: 0, y: 14 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const AboutSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const containerVariants = staggerContainer(0.2, 0.1);
+  const isInView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
     <section
       id="nosotros"
       ref={ref}
-      className="py-24 bg-gradient-to-b from-sage-light/60 via-cream to-rose-light/40"
+      className="relative py-28 bg-cream border-b border-cream-dark/20 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* manchas suaves de fondo */}
+      <div className="absolute -top-24 right-20 h-72 w-72 rounded-full bg-rose-light/40 blur-3xl" />
+      <div className="absolute bottom-10 left-16 h-64 w-64 rounded-full bg-sage-light/40 blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+          className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center"
         >
-          {/* Image */}
-          <motion.div
-            variants={fadeLeft(40, 0.8)}
-            className="relative"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-elevated">
+          {/* IMAGEN */}
+          <motion.div variants={imageReveal} className="relative">
+            <div className="relative rounded-[48px] overflow-hidden shadow-elevated bg-card p-4">
               <img
                 src={aboutImage}
-                alt="Elaboración artesanal en Celicake"
-                className="w-full h-[400px] lg:h-[500px] object-cover"
+                alt="Pastelería artesanal sin gluten CeliCake"
+                className="w-full h-[420px] lg:h-[520px] object-cover rounded-[40px]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
             </div>
-            {/* Decorative Element */}
-            <motion.div
-              aria-hidden
-              className="absolute -bottom-6 -right-6 w-32 h-32 bg-rose-light rounded-2xl -z-10"
-              animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              aria-hidden
-              className="absolute -top-6 -left-6 w-24 h-24 bg-sage-light rounded-2xl -z-10"
-              animate={{ y: [0, 8, 0], rotate: [0, -2, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            />
           </motion.div>
 
-          {/* Content */}
-          <motion.div
-            variants={fadeRight(40, 0.8)}
-          >
-            <span className="inline-block text-primary font-medium mb-4">
-              Sobre Nosotros
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground mb-6 leading-tight">
-              Celicake
+          {/* TEXTO */}
+          <div>
+            <motion.span
+              variants={fadeUpSoft}
+              className="block text-[11px] uppercase tracking-[0.35em] text-secondary/60 mb-6"
+            >
+              Nuestra historia
+            </motion.span>
+
+            <motion.h2
+              variants={fadeUpSoft}
+              className="font-display text-4xl sm:text-5xl leading-[1.05] text-secondary mb-8"
+            >
+              Artesanal, consciente
               <br />
-              <span className="text-primary">Carla Teicher</span>
-            </h2>
+              <span className="italic">y sin gluten</span>
+            </motion.h2>
 
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <motion.div
+              variants={fadeUpSoft}
+              className="space-y-5 text-foreground/75 leading-relaxed max-w-xl"
+            >
               <p>
-                Celicake nace del amor por la cocina y el cuidado de quienes
-                necesitan una alimentación sin gluten. Cada producto es
-                elaborado de forma artesanal, con ingredientes seleccionados y
-                dedicación en cada detalle.
+                En CeliCake creemos que comer sin gluten no debería ser una
+                limitación, sino una experiencia placentera y segura.
+                Cada receta nace del respeto por los ingredientes y por
+                quienes confían en nosotros.
               </p>
               <p>
-                Sabemos lo importante que es para vos poder disfrutar de
-                productos ricos, seguros y hechos con amor. Por eso, trabajamos
-                con los más altos estándares de calidad para garantizar que cada
-                bocado sea una experiencia especial.
+                Trabajamos de manera artesanal, con procesos cuidados y sin
+                contaminación cruzada. Elegimos tomarnos el tiempo necesario
+                para que cada producto llegue a tu mesa con tranquilidad y sabor real.
               </p>
-              <p>
-                Nuestra pasión es crear repostería y panadería que te haga
-                sentir que no te estás perdiendo de nada. Porque comer sin
-                gluten también puede ser delicioso.
-              </p>
-            </div>
+            </motion.div>
 
-            {/* Values */}
-            <div className="flex flex-wrap gap-3 mt-8">
-              <motion.span
-                variants={scaleIn(0.95, 0.4)}
-                className="px-4 py-2 bg-sage-light text-sage-dark rounded-full text-sm font-medium"
-              >
-                Artesanal
-              </motion.span>
-              <motion.span
-                variants={scaleIn(0.95, 0.4)}
-                className="px-4 py-2 bg-rose-light text-rose-dark rounded-full text-sm font-medium"
-              >
-                Con amor
-              </motion.span>
-              <motion.span
-                variants={scaleIn(0.95, 0.4)}
-                className="px-4 py-2 bg-cream-dark text-warm-brown rounded-full text-sm font-medium"
-              >
-                Seguro
-              </motion.span>
-            </div>
-          </motion.div>
+            {/* BLOQUE HISTORIA */}
+            <motion.div
+              variants={fadeUpSoft}
+              className="mt-8 rounded-[32px] border border-cream-dark/60 bg-background/80 p-6 text-sm text-foreground/75 shadow-soft max-w-xl"
+            >
+              <p className="font-semibold text-secondary mb-2">
+                Cómo empezó CeliCake
+              </p>
+              <p>
+                Nacimos buscando un “rico de verdad” para personas celíacas.
+                Empezamos con pedidos pequeños y hoy seguimos trabajando
+                con el mismo cuidado, la misma dedicación y el mismo compromiso.
+              </p>
+            </motion.div>
+
+            {/* VALORES */}
+            <motion.div
+              variants={container}
+              className="flex flex-wrap gap-3 mt-10"
+            >
+              {[
+                "Seguridad SIN TACC",
+                "Ingredientes seleccionados",
+                "Procesos cuidados",
+                "Hecho a pedido",
+              ].map((value) => (
+                <motion.span
+                  key={value}
+                  variants={chipReveal}
+                  className="rounded-full bg-sage/25 px-4 py-2 text-sm text-secondary"
+                >
+                  {value}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            {/* CTA */}
+            <motion.a
+              variants={fadeUpSoft}
+              href="#contacto"
+              className="mt-10 inline-flex items-center justify-center rounded-full bg-primary px-7 py-4 text-[11px] uppercase tracking-[0.35em] text-secondary shadow-elevated hover:scale-105 transition-transform"
+            >
+              Hablemos de tu pedido
+            </motion.a>
+          </div>
         </motion.div>
       </div>
     </section>

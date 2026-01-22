@@ -19,17 +19,17 @@ const FinalCTASection = () => {
   };
 
   return (
-    <section ref={ref} className="py-24 bg-sage relative overflow-hidden">
+    <section ref={ref} className="py-24 bg-background border-b border-cream-dark/20 relative overflow-hidden">
       {/* Decorative Elements */}
       <motion.div
         aria-hidden
-        className="absolute top-0 left-0 w-64 h-64 bg-sage-dark/10 rounded-full -translate-y-1/2 -translate-x-1/2"
+        className="absolute top-0 left-0 w-64 h-64 bg-sage-light/40 rounded-full -translate-y-1/2 -translate-x-1/2"
         animate={{ y: [0, -12, 0], x: [0, 10, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden
-        className="absolute bottom-0 right-0 w-80 h-80 bg-sage-dark/10 rounded-full translate-y-1/2 translate-x-1/2"
+        className="absolute bottom-0 right-0 w-80 h-80 bg-cream/40 rounded-full translate-y-1/2 translate-x-1/2"
         animate={{ y: [0, 10, 0], x: [0, -12, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -39,7 +39,7 @@ const FinalCTASection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="text-center"
+          className="text-center rounded-3xl bg-cream border border-cream-dark/40 shadow-elevated px-6 py-16 sm:px-10"
         >
           {/* Decorative Heart */}
           <motion.div variants={badgeVariants} className="inline-block mb-6">
@@ -47,25 +47,25 @@ const FinalCTASection = () => {
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-              <Heart className="w-12 h-12 text-primary-foreground fill-rose" />
+              <Heart className="w-12 h-12 text-primary fill-secondary" />
             </motion.div>
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
-            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-primary-foreground mb-6 leading-tight"
+            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-secondary mb-6 leading-tight"
           >
-            Sabores artesanales,
+            Rico de verdad,
             <br />
-            seguros y sin gluten
+            seguro para celíacos
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto"
+            className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto"
           >
-            Hacé tu pedido hoy y disfrutá de productos elaborados con amor y
-            dedicación. ¡Te esperamos!
+            Hecho a pedido, 100% SIN TACC y con procesos cuidados para evitar
+            contaminación cruzada. Pedinos por WhatsApp y coordinamos todo.
           </motion.p>
 
           <motion.div variants={badgeVariants}>
@@ -73,10 +73,10 @@ const FinalCTASection = () => {
               variant="hero"
               size="xl"
               onClick={handleWhatsApp}
-              className="bg-card text-foreground hover:bg-card/90"
+              className="bg-primary text-secondary hover:bg-primary/90"
             >
               <MessageCircle size={22} />
-              Pedí tu producto ahora
+              Hacer mi pedido
             </Button>
           </motion.div>
         </motion.div>

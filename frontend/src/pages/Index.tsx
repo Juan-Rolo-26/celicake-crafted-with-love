@@ -5,6 +5,9 @@ import AboutSection from "@/components/AboutSection";
 import ProductsSection from "@/components/ProductsSection";
 import ProductListSection from "@/components/ProductListSection";
 import HowToOrderSection from "@/components/HowToOrderSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
+import ContactSection from "@/components/ContactSection";
 import InstagramSection from "@/components/InstagramSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
@@ -16,11 +19,14 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <GlutenFreeSection />
-        <AboutSection />
         <ProductsSection />
         <ProductListSection />
+        <AboutSection />
+        <GlutenFreeSection />
         <HowToOrderSection />
+        <TestimonialsSection />
+        <FAQSection />
+        <ContactSection />
         <InstagramSection />
         <FinalCTASection />
       </main>

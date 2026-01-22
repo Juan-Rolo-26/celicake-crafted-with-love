@@ -24,16 +24,16 @@ const GlutenFreeBadge = ({ size = "md", className = "" }: GlutenFreeBadgeProps) 
       initial={{ scale: 0, rotate: -180 }}
       animate={{ scale: 1, rotate: 0 }}
       transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
-      className={`${sizeClasses[size]} ${className} relative flex flex-col items-center justify-center rounded-full bg-sage-light border-2 border-sage shadow-soft`}
+      className={`${sizeClasses[size]} ${className} relative flex flex-col items-center justify-center rounded-full bg-sage/25 border-2 border-sage shadow-soft`}
     >
       <div className="relative">
-        <Wheat size={iconSizes[size]} className="text-sage-dark" />
+        <Wheat size={iconSizes[size]} className="text-secondary" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-full h-0.5 bg-rose-dark rotate-45 transform origin-center" />
+          <div className="w-full h-0.5 bg-secondary rotate-45 transform origin-center" />
         </div>
       </div>
-      <span className="font-semibold text-sage-dark mt-1 leading-tight text-center">
-        {size === "lg" ? "SIN GLUTEN" : "0% GLUTEN"}
+      <span className="font-semibold text-secondary mt-1 leading-tight text-center">
+        {size === "lg" ? "SIN TACC" : "0% TACC"}
       </span>
     </motion.div>
   );

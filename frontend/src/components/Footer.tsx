@@ -4,86 +4,116 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const containerVariants = staggerContainer(0.12, 0.1);
 
   return (
     <motion.footer
-      className="bg-foreground py-12"
+      className="relative overflow-hidden bg-cream border-t border-cream-dark/60 pt-20 pb-10"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-120px" }}
     >
+      {/* Ambient blobs */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-rose-light/40 blur-3xl" />
+        <div className="absolute -bottom-20 left-12 h-60 w-60 rounded-full bg-sage-light/40 blur-3xl" />
+      </div>
+
       <motion.div
-        variants={containerVariants}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        variants={staggerContainer(0.15, 0.1)}
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <motion.div variants={fadeUp(20, 0.6)} className="grid md:grid-cols-3 gap-8 items-center">
-          {/* Logo & Description */}
+        {/* Main footer */}
+        <motion.div
+          variants={fadeUp(20, 0.6)}
+          className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]"
+        >
+          {/* Brand */}
           <div className="text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+            <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
               <img
                 src="/images/logo_celicake.png"
-                alt="Celicake"
-                className="h-12 w-12 md:h-14 md:w-14 object-contain"
+                alt="CeliCake"
+                className="h-14 w-14 object-contain"
               />
-              <h3 className="font-display text-2xl font-semibold text-background">
-                Celicake
-              </h3>
+              <div>
+                <h3 className="font-display text-2xl text-secondary">
+                  CeliCake
+                </h3>
+                <span className="text-[11px] uppercase tracking-[0.3em] text-foreground/60">
+                  SIN TACC
+                </span>
+              </div>
             </div>
-            <p className="text-background/70 text-sm">
-              Panadería y repostería artesanal
-              <br />
-              100% libre de gluten
+
+            <p className="text-foreground/70 text-sm max-w-sm">
+              Pastelería artesanal sin gluten, pensada para celíacos y para quienes buscan comer rico y seguro.
             </p>
+
+            <span className="mt-5 inline-flex rounded-full bg-sage/30 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-secondary">
+              Apto celíacos
+            </span>
           </div>
 
-          {/* Social Links */}
-          <div className="flex justify-center gap-4">
-            <a
-              href="https://wa.me/543515157731"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-background/10 flex items-center justify-center text-background hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            >
-              <MessageCircle size={22} />
-            </a>
-            <a
-              href="https://instagram.com/celicake_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-background/10 flex items-center justify-center text-background hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            >
-              <Instagram size={22} />
-            </a>
+          {/* Links */}
+          <div className="text-center md:text-left">
+            <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-foreground/60">
+              Navegación
+            </p>
+            <nav className="flex flex-col gap-3 text-sm">
+              {["Inicio", "Productos", "Nosotros", "Contacto"].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-foreground/70 hover:text-secondary transition-colors"
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
           </div>
 
-          {/* Contact */}
-          <div className="text-center md:text-right">
-            <p className="text-background/70 text-sm mb-2">
-              WhatsApp: +54 351 515 7731
+          {/* Social */}
+          <div className="text-center md:text-left">
+            <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-foreground/60">
+              Contacto
             </p>
-            <a
-              href="https://instagram.com/celicake_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-background/70 text-sm hover:text-primary transition-colors"
-            >
-              @celicake_
-            </a>
+            <div className="flex justify-center md:justify-start gap-4">
+              {[ 
+                { icon: MessageCircle, href: "https://wa.me/543515157731" },
+                { icon: Instagram, href: "https://instagram.com/celicake_" }
+              ].map(({ icon: Icon, href }, i) => (
+                <a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-12 w-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary hover:bg-secondary hover:text-background transition-all duration-300 hover:scale-110"
+                >
+                  <Icon size={22} />
+                </a>
+              ))}
+            </div>
+
+            <p className="mt-5 text-sm text-foreground/70">
+              Coordinamos pedidos en <strong>[ZONA / CIUDAD]</strong>
+            </p>
           </div>
         </motion.div>
 
         {/* Divider */}
-        <motion.div variants={fadeUp(16, 0.5)} className="h-px bg-background/10 my-8" />
-
-        {/* Copyright */}
         <motion.div
           variants={fadeUp(16, 0.5)}
-          className="flex flex-col sm:flex-row justify-between items-center gap-4 text-background/50 text-sm"
+          className="my-10 h-px bg-foreground/10"
+        />
+
+        {/* Bottom */}
+        <motion.div
+          variants={fadeUp(16, 0.5)}
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-foreground/60"
         >
-          <p>© {currentYear} Celicake - Carla Teicher. Todos los derechos reservados.</p>
+          <p>© {currentYear} CeliCake · Pastelería sin gluten</p>
           <p className="flex items-center gap-1">
-            Hecho con <Heart size={14} className="text-rose fill-rose" /> para personas celíacas
+            Hecho con <Heart size={14} className="text-rose fill-rose" /> y mucho cuidado.
           </p>
         </motion.div>
       </motion.div>

@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MessageCircle, ShoppingBag, Truck } from "lucide-react";
+import { CheckCircle, MessageCircle, ShoppingBag, Truck } from "lucide-react";
 import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
 
 const HowToOrderSection = () => {
@@ -14,25 +14,31 @@ const HowToOrderSection = () => {
     {
       icon: MessageCircle,
       number: "01",
-      title: "Escribinos",
-      description: "Contactanos por WhatsApp y contanos qué necesitás",
+      title: "WhatsApp",
+      description: "Escribinos y contanos qué querés",
     },
     {
       icon: ShoppingBag,
       number: "02",
-      title: "Elegí tu producto",
-      description: "Seleccioná entre nuestra variedad de productos artesanales",
+      title: "Elección",
+      description: "Elegís producto, tamaño y detalles",
+    },
+    {
+      icon: CheckCircle,
+      number: "03",
+      title: "Confirmación",
+      description: "Confirmamos pedido y disponibilidad",
     },
     {
       icon: Truck,
-      number: "03",
-      title: "Coordinamos entrega",
-      description: "Acordamos fecha, horario y lugar de entrega o retiro",
+      number: "04",
+      title: "Entrega",
+      description: "Coordinamos entrega o retiro",
     },
   ];
 
   return (
-    <section id="pedidos" ref={ref} className="py-24 bg-background">
+    <section id="como-pedir" ref={ref} className="py-24 bg-background border-b border-cream-dark/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -41,15 +47,14 @@ const HowToOrderSection = () => {
           animate={isInView ? "show" : "hidden"}
           className="text-center mb-16"
         >
-          <span className="inline-block text-primary font-medium mb-4">
-            Cómo Pedir
+          <span className="inline-block text-[11px] uppercase tracking-[0.35em] text-foreground/70 mb-4">
+            Cómo pedir
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground mb-6">
-            Tu pedido en <span className="text-primary">3 simples pasos</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-6">
+            Tu pedido en <span className="text-primary">4 pasos simples</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Hacer tu pedido es muy fácil. Seguí estos pasos y pronto estarás
-            disfrutando de productos artesanales sin gluten.
+          <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            Respondemos rápido, dentro del día. Coordinamos juntos cada detalle.
           </p>
         </motion.div>
 
@@ -58,7 +63,7 @@ const HowToOrderSection = () => {
           variants={stepsGridVariants}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid md:grid-cols-3 gap-8 lg:gap-12"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
         >
           {steps.map((step, index) => (
             <motion.div
@@ -72,7 +77,7 @@ const HowToOrderSection = () => {
               {index < steps.length - 1 && (
                 <motion.div
                   variants={fadeUp(12, 0.4)}
-                  className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-border"
+                  className="hidden lg:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-border"
                 />
               )}
 
@@ -83,20 +88,34 @@ const HowToOrderSection = () => {
                 </span>
 
                 {/* Icon */}
-                <div className="w-16 h-16 rounded-2xl bg-sage-light flex items-center justify-center mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-cream border border-cream-dark/40 flex items-center justify-center mb-6">
                   <step.icon className="w-8 h-8 text-sage-dark" />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+                <h3 className="font-display text-xl font-semibold text-secondary mb-2">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-foreground/80 text-sm">
                   {step.description}
                 </p>
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          variants={fadeUp(20, 0.6)}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="text-center mt-12"
+        >
+          <a
+            href="#contacto"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-[11px] uppercase tracking-[0.3em] text-secondary shadow-elevated hover:shadow-soft transition-all duration-300"
+          >
+            Hacer mi pedido
+          </a>
         </motion.div>
       </div>
     </section>
