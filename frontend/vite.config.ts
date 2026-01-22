@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  base: "/celicake-crafted-with-love/", // 👈 NOMBRE DEL REPO
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
