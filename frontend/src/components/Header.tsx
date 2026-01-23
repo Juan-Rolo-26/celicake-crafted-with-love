@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoSrc from "@/assets/logo_celicake.png";
 
 const Header = () => {
   const [visible, setVisible] = useState(false);
@@ -42,17 +43,17 @@ const Header = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-20">
               {/* Logo */}
-              <a href="#inicio" className="flex items-center gap-3">
+              <a href="#inicio" className="group flex items-center gap-3">
                 <img
-                  src="/images/logo_celicake.png"
+                  src={logoSrc}
                   alt="CeliCake"
-                  className="h-12 w-12 object-contain"
+                  className="h-12 w-12 object-contain drop-shadow-[0_8px_14px_rgba(35,20,12,0.18)]"
                 />
                 <div className="leading-tight">
-                  <span className="block font-display text-2xl text-foreground">
+                  <span className="block font-display text-2xl text-foreground transition-colors duration-300 group-hover:text-warm-brown">
                     CeliCake
                   </span>
-                  <span className="block text-[10px] uppercase tracking-[0.3em] text-foreground/60">
+                  <span className="block text-[10px] uppercase tracking-[0.3em] text-foreground/60 transition-colors duration-300 group-hover:text-warm-brown/80">
                     sin gluten
                   </span>
                 </div>
@@ -64,7 +65,7 @@ const Header = () => {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="text-[11px] uppercase tracking-[0.35em] text-foreground/70 hover:text-foreground transition-colors"
+                    className="nav-button"
                   >
                     {item.label}
                   </a>
@@ -108,7 +109,7 @@ const Header = () => {
                       key={item.label}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="text-[11px] uppercase tracking-[0.35em] text-foreground/80"
+                      className="nav-button w-full justify-center"
                     >
                       {item.label}
                     </a>

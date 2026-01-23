@@ -3,11 +3,11 @@ const MarqueeSection = () => {
 
   return (
     <section className="relative overflow-hidden border-y border-cream-dark/40 bg-blush/60 py-3">
-      <div className="marquee-track flex w-[200%]">
+      <div className="marquee-track flex w-max">
         {[0, 1].map((group) => (
           <div
             key={`marquee-group-${group}`}
-            className="flex min-w-[50%] items-center justify-around gap-10 px-6"
+            className="flex shrink-0 items-center gap-10 px-6 whitespace-nowrap"
             aria-hidden={group === 1}
           >
             {items.map((item, index) => (

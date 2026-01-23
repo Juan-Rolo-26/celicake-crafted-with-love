@@ -98,7 +98,7 @@ const ProductListSection = () => {
     <section
       id="lista-productos"
       ref={ref}
-      className="relative py-24 bg-muted border-b border-cream-dark/30"
+      className="relative bg-background pb-2"
     >
       {/* fondo */}
       <div className="absolute inset-0 pointer-events-none">
@@ -112,7 +112,7 @@ const ProductListSection = () => {
           variants={fadeUp(24, 0.7)}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center mb-14"
+          className="mx-auto mb-2 flex min-h-[14vh] w-full max-w-3xl flex-col items-center justify-start px-4 pt-3 text-center sm:min-h-[18vh] sm:px-6 lg:px-8"
         >
           <h2 className="mt-5 font-display text-3xl sm:text-4xl text-secondary">
             Nuestra carta, pensada para cuidarte

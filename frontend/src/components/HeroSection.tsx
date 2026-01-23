@@ -1,4 +1,5 @@
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import igDelicioso1 from "@/assets/instagram/ig-deliciosos-1-DTVfIS9jseG.jpg";
 import igDelicioso2 from "@/assets/instagram/ig-deliciosos-2-DTSy45hDj1t.jpg";
@@ -85,18 +86,19 @@ const HeroSection = () => {
       </div>
 
       <motion.div
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 text-background/70"
+        className="absolute bottom-16 left-1/2 z-10 -translate-x-1/2 sm:bottom-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.1, duration: 0.8, ease: "easeOut" }}
       >
-        <div className="h-10 w-6 rounded-full border border-background/40 flex items-start justify-center">
-          <motion.span
-            className="mt-2 h-1.5 w-1.5 rounded-full bg-background/80"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
+        <motion.div
+          className="flex h-10 w-12 items-center justify-center rounded-2xl border border-background/40 bg-background/10 text-background/80 shadow-soft backdrop-blur-sm"
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          aria-hidden
+        >
+          <ChevronDown size={20} />
+        </motion.div>
       </motion.div>
     </section>
   );

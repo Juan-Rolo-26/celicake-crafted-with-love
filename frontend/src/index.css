@@ -153,6 +153,54 @@
   .step-card {
     @apply flex flex-col items-center text-center p-6 rounded-2xl bg-cream border border-cream-dark/40 shadow-soft;
   }
+
+  /* Navigation buttons */
+  .nav-button {
+    @apply relative inline-flex items-center justify-center px-2 py-1 text-[11px] uppercase tracking-[0.35em] text-foreground/70 transition-colors duration-300 ease-out;
+  }
+
+  .nav-button::after {
+    content: "";
+    @apply absolute left-0 -bottom-2 h-[2px] w-0 bg-secondary transition-all duration-300 ease-out;
+  }
+
+  .nav-button:hover {
+    @apply text-secondary;
+  }
+
+  .nav-button:hover::after {
+    width: 100%;
+  }
+
+  .nav-button:active {
+    @apply translate-y-0;
+  }
+
+  /* Footer buttons */
+  .footer-button {
+    @apply relative inline-flex items-center justify-center px-3 py-2 text-sm text-foreground/70 transition-colors duration-300 ease-out;
+  }
+
+  .footer-button::before {
+    content: "";
+    @apply absolute inset-0 -z-10 origin-left scale-x-0 bg-warm-brown/10 transition-transform duration-300 ease-out;
+  }
+
+  .footer-button:hover {
+    @apply text-warm-brown;
+  }
+
+  .footer-button:hover::before {
+    transform: scaleX(1);
+  }
+
+  .footer-icon-button {
+    @apply h-12 w-12 rounded-lg border border-secondary/30 bg-background/90 flex items-center justify-center text-secondary shadow-soft transition-all duration-300 ease-out;
+  }
+
+  .footer-icon-button:hover {
+    @apply -translate-y-0.5 bg-warm-brown text-secondary-foreground border-warm-brown shadow-elevated;
+  }
 }
 
 @layer utilities {
