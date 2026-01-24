@@ -112,18 +112,18 @@ const ProductListSection = () => {
           variants={fadeUp(24, 0.7)}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="mx-auto mb-2 flex min-h-[14vh] w-full max-w-3xl flex-col items-center justify-start px-4 pt-3 text-center sm:min-h-[18vh] sm:px-6 lg:px-8"
+          className="mx-auto mb-2 flex min-h-[18vh] w-full max-w-3xl flex-col items-center justify-center gap-4 px-4 py-8 text-center sm:min-h-[22vh] sm:px-6 lg:px-8"
         >
-          <h2 className="mt-5 font-display text-3xl sm:text-4xl text-secondary">
+          <h2 className="font-display text-3xl sm:text-4xl text-secondary">
             Nuestra carta, pensada para cuidarte
           </h2>
 
-          <p className="mt-4 text-sm text-foreground/75 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm text-foreground/75 max-w-2xl mx-auto leading-relaxed">
             Cada producto se elabora a pedido, con ingredientes seguros y procesos
             cuidados, para que disfrutes sin gluten y con total tranquilidad.
           </p>
 
-          <div className="mt-6 flex justify-center gap-3 flex-wrap text-[10px] uppercase tracking-[0.35em]">
+          <div className="flex justify-center gap-3 flex-wrap text-[10px] uppercase tracking-[0.35em]">
             {["Sin TACC", "Apto celíacos", "Hecho a pedido"].map((label) => (
               <span
                 key={label}
@@ -140,7 +140,7 @@ const ProductListSection = () => {
           variants={staggerContainer(0.12, 0.2)}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="space-y-12"
+          className="space-y-0"
         >
           {categories.map((cat, index) => {
             const isReversed = index % 2 !== 0;
@@ -150,7 +150,7 @@ const ProductListSection = () => {
               <motion.div
                 key={cat.title}
                 variants={fadeUp(20, 0.5)}
-                className="w-full overflow-hidden border-y border-cream-dark/60 bg-background/80"
+                className="w-full overflow-hidden bg-background/80"
               >
                 <div className={`grid md:grid-cols-2 ${isReversed ? "md:[&>div:first-child]:order-2" : ""}`}>
                   <div className="relative">
