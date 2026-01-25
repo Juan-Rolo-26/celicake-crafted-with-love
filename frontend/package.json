@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://juan-rolo-26.github.io/celicake-crafted-with-love",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
