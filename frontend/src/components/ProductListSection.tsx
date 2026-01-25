@@ -145,7 +145,7 @@ const ProductListSection = () => {
           {categories.map((cat, index) => {
             const isReversed = index % 2 !== 0;
             const panelStyle = tonePanel[cat.tone as keyof typeof tonePanel];
-            const itemsText = cat.items.join(", ");
+            const useTwoColumns = cat.items.length > 6;
             return (
               <motion.div
                 key={cat.title}
@@ -170,9 +170,18 @@ const ProductListSection = () => {
                       </p>
                     )}
                     <div className="mt-6 h-px w-24 bg-secondary/35 mx-auto md:mx-0" />
-                    <p className="mt-6 text-base sm:text-lg text-secondary/75 leading-relaxed max-w-xl">
-                      {itemsText}
-                    </p>
+                    <ul
+                      className={`mt-6 max-w-xl text-base leading-relaxed text-secondary/80 sm:text-lg ${
+                        useTwoColumns ? "grid gap-3 sm:grid-cols-2" : "grid gap-3"
+                      }`}
+                    >
+                      {cat.items.map((item) => (
+                        <li key={item} className="flex items-start gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary/40" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                     <div className="mt-6 h-px w-24 bg-secondary/35 mx-auto md:mx-0" />
                     <Button
                       onClick={handleWhatsApp}

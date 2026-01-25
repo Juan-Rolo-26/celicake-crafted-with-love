@@ -2,7 +2,7 @@ const MarqueeSection = () => {
   const items = Array.from({ length: 10 }, () => "CeliCake");
 
   return (
-    <section className="relative overflow-hidden border-y border-cream-dark/40 bg-blush/60 py-3">
+    <section className="relative overflow-hidden border-y border-cream-dark/40 bg-blush/60 py-4">
       <div className="marquee-track flex w-max">
         {[0, 1].map((group) => (
           <div
@@ -13,7 +13,7 @@ const MarqueeSection = () => {
             {items.map((item, index) => (
               <span
                 key={`${group}-${index}`}
-                className="font-logo text-2xl sm:text-3xl text-secondary/70 tracking-[0.08em]"
+                className="font-logo text-2xl sm:text-3xl text-secondary/70 tracking-[0.08em] leading-[1.3]"
               >
                 {item}
               </span>
