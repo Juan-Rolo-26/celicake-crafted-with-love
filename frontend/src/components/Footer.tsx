@@ -15,8 +15,8 @@ const Footer = () => {
     >
       {/* Ambient decoration */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute -top-32 right-0 h-80 w-80 rounded-full bg-rose-light/40 blur-[120px]" />
-        <div className="absolute -bottom-24 left-10 h-72 w-72 rounded-full bg-sage-light/40 blur-[120px]" />
+        <div className="absolute -top-32 right-0 h-80 w-80 rounded-full bg-rose-light/40 blur-[120px] float-soft" />
+        <div className="absolute -bottom-24 left-10 h-72 w-72 rounded-full bg-sage-light/40 blur-[120px] float-slower" />
       </div>
 
       <motion.div
@@ -30,14 +30,14 @@ const Footer = () => {
         >
           {/* Brand */}
           <div className="text-center md:text-left">
-            <div className="mb-5 flex items-center justify-center gap-4 md:justify-start">
+            <div className="group mb-5 flex items-center justify-center gap-4 md:justify-start">
               <img
                 src={logoSrc}
                 alt="CeliCake"
-                className="h-16 w-16 object-contain drop-shadow-[0_10px_18px_rgba(35,20,12,0.25)]"
+                className="h-16 w-16 object-contain drop-shadow-[0_10px_18px_rgba(35,20,12,0.25)] transition-transform duration-500 ease-out group-hover:rotate-2 group-hover:scale-[1.06]"
               />
               <div>
-                <h3 className="font-display text-3xl text-secondary">
+                <h3 className="font-display text-3xl text-secondary transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
                   CeliCake
                 </h3>
                 <span className="block text-[11px] uppercase tracking-[0.35em] text-foreground/60">

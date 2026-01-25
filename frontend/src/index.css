@@ -102,7 +102,6 @@
     --sidebar-border: 22 26% 28%;
     --sidebar-ring: 151 28% 65%;
   }
-}
 
 @layer base {
   * {
@@ -141,22 +140,67 @@
 
   /* Product Card */
   .product-card {
-    @apply bg-cream border border-cream-dark/40 rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-300;
+    @apply relative bg-cream border border-cream-dark/40 rounded-2xl overflow-hidden shadow-soft transition-all duration-500 ease-out hover:shadow-elevated hover:-translate-y-1 hover:-rotate-1;
+  }
+
+  .product-card::after {
+    content: "";
+    position: absolute;
+    inset: -45%;
+    background: radial-gradient(circle, hsla(var(--blush), 0.55) 0%, transparent 65%);
+    opacity: 0;
+    transform: translateY(12%) rotate(8deg);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+  }
+
+  .product-card:hover::after {
+    opacity: 0.35;
+    transform: translateY(0) rotate(0);
   }
 
   /* WhatsApp Button */
   .whatsapp-button {
-    @apply inline-flex items-center gap-3 bg-primary text-secondary px-6 py-3 rounded-full font-medium shadow-soft hover:shadow-elevated hover:scale-[1.03] transition-all duration-300;
+    @apply relative inline-flex items-center gap-3 overflow-hidden bg-primary text-secondary px-6 py-3 rounded-full font-medium shadow-soft transition-all duration-300 ease-out hover:shadow-elevated hover:scale-[1.03];
+  }
+
+  .whatsapp-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, hsla(var(--blush), 0.7) 45%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+  }
+
+  .whatsapp-button:hover::after {
+    transform: translateX(120%);
   }
 
   /* Step Card */
   .step-card {
-    @apply flex flex-col items-center text-center p-6 rounded-2xl bg-cream border border-cream-dark/40 shadow-soft;
+    @apply relative flex flex-col items-center text-center p-6 rounded-2xl bg-cream border border-cream-dark/40 shadow-soft transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-elevated;
+  }
+
+  .step-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, hsla(var(--blush), 0.4), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .step-card:hover::before {
+    opacity: 1;
   }
 
   /* Navigation buttons */
   .nav-button {
-    @apply relative inline-flex items-center justify-center px-2 py-1 text-[11px] uppercase tracking-[0.35em] text-foreground/70 transition-colors duration-300 ease-out;
+    @apply relative inline-flex items-center justify-center px-2 py-1 text-[11px] uppercase tracking-[0.35em] text-foreground/70;
+    transition: color 300ms ease, transform 300ms ease, letter-spacing 300ms ease;
   }
 
   .nav-button::after {
@@ -166,6 +210,8 @@
 
   .nav-button:hover {
     @apply text-secondary;
+    transform: translateY(-1px);
+    letter-spacing: 0.45em;
   }
 
   .nav-button:hover::after {
@@ -178,7 +224,8 @@
 
   /* Footer buttons */
   .footer-button {
-    @apply relative inline-flex items-center justify-center px-3 py-2 text-sm text-foreground/70 transition-colors duration-300 ease-out;
+    @apply relative inline-flex items-center justify-center px-3 py-2 text-sm text-foreground/70;
+    transition: color 300ms ease, transform 300ms ease, letter-spacing 300ms ease;
   }
 
   .footer-button::before {
@@ -188,6 +235,8 @@
 
   .footer-button:hover {
     @apply text-warm-brown;
+    transform: translateY(-1px);
+    letter-spacing: 0.08em;
   }
 
   .footer-button:hover::before {
@@ -195,11 +244,69 @@
   }
 
   .footer-icon-button {
-    @apply h-12 w-12 rounded-lg border border-secondary/30 bg-background/90 flex items-center justify-center text-secondary shadow-soft transition-all duration-300 ease-out;
+    @apply relative h-12 w-12 rounded-lg border border-secondary/30 bg-background/90 flex items-center justify-center text-secondary shadow-soft transition-all duration-500 ease-out;
   }
 
   .footer-icon-button:hover {
-    @apply -translate-y-0.5 bg-warm-brown text-secondary-foreground border-warm-brown shadow-elevated;
+    @apply bg-warm-brown text-secondary-foreground border-warm-brown shadow-elevated;
+    transform: translateY(-4px) rotate(2deg);
+  }
+
+  /* Menu (Carta) cards */
+  .menu-card {
+    @apply relative overflow-hidden;
+  }
+
+  .menu-card::after {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(circle, hsla(var(--accent), 0.5) 0%, transparent 70%);
+    opacity: 0;
+    transform: translateY(8%) rotate(-4deg);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .menu-card:hover::after {
+    opacity: 0.45;
+    transform: translateY(0) rotate(0);
+  }
+
+  .menu-panel {
+    @apply relative overflow-hidden;
+    z-index: 0;
+  }
+
+  .menu-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(140deg, hsla(var(--blush), 0.55), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .menu-card:hover .menu-panel::before {
+    opacity: 1;
+  }
+
+  .menu-card > *,
+  .menu-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .menu-item {
+    transition: transform 300ms ease, color 300ms ease;
+  }
+
+  .menu-item:hover {
+    transform: translateX(6px);
+    color: hsl(var(--secondary));
   }
 }
 
@@ -298,6 +405,62 @@
     animation: marquee 28s linear infinite;
     will-change: transform;
   }
+
+  .float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+  }
+
+  .float-slower {
+    animation: float-slower 13s ease-in-out infinite;
+  }
+
+  .float-soft {
+    animation: float-soft 7s ease-in-out infinite;
+  }
+
+  .cursor-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 60;
+  }
+
+  .cursor-ring,
+  .cursor-dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate3d(-999px, -999px, 0);
+    border-radius: 999px;
+    pointer-events: none;
+  }
+
+  .cursor-ring {
+    width: 40px;
+    height: 40px;
+    border: 1px solid hsla(var(--sage), 0.6);
+    background: radial-gradient(circle, hsla(var(--blush), 0.4) 0%, transparent 65%);
+    box-shadow: 0 0 30px hsla(var(--blush), 0.35);
+    --cursor-scale: 1;
+    transition: transform 120ms ease, opacity 250ms ease;
+    animation: cursor-pulse 2.6s ease-in-out infinite;
+  }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: hsl(var(--secondary));
+    box-shadow: 0 0 18px hsla(var(--secondary), 0.35);
+    transition: transform 80ms ease, opacity 200ms ease;
+  }
+
+  .cursor-hidden {
+    opacity: 0;
+  }
+
+  .cursor-pressed {
+    --cursor-scale: 0.85;
+  }
 }
 
 @keyframes marquee {
@@ -309,8 +472,61 @@
   }
 }
 
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes float-slower {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 16px, 0);
+  }
+}
+
+@keyframes float-soft {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes cursor-pulse {
+  0%, 100% {
+    box-shadow: 0 0 24px hsla(var(--blush), 0.25);
+  }
+  50% {
+    box-shadow: 0 0 36px hsla(var(--blush), 0.45);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;
   }
+
+  .float-slow,
+  .float-slower,
+  .float-soft {
+    animation: none;
+  }
+
+  .cursor-layer {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-layer {
+    display: none;
+  }
+}
 }

@@ -102,8 +102,8 @@ const ProductListSection = () => {
     >
       {/* fondo */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 right-10 h-64 w-64 rounded-full bg-rose-light/50 blur-3xl" />
-        <div className="absolute bottom-10 left-10 h-52 w-52 rounded-full bg-sage-light/50 blur-3xl" />
+        <div className="absolute -top-24 right-10 h-64 w-64 rounded-full bg-rose-light/50 blur-3xl float-slow" />
+        <div className="absolute bottom-10 left-10 h-52 w-52 rounded-full bg-sage-light/50 blur-3xl float-slower" />
       </div>
 
       <div className="relative w-full">
@@ -150,17 +150,17 @@ const ProductListSection = () => {
               <motion.div
                 key={cat.title}
                 variants={fadeUp(20, 0.5)}
-                className="w-full overflow-hidden bg-background/80"
+                className="group w-full overflow-hidden bg-background/80 menu-card"
               >
                 <div className={`grid md:grid-cols-2 ${isReversed ? "md:[&>div:first-child]:order-2" : ""}`}>
                   <div className="relative">
                     <img
                       src={cat.image}
                       alt={`Categoria ${cat.title}`}
-                      className="h-full w-full object-cover min-h-[260px] md:min-h-[560px]"
+                      className="h-full w-full object-cover min-h-[260px] md:min-h-[560px] transition-[filter,opacity,transform] duration-500 ease-out group-hover:brightness-105 group-hover:opacity-95"
                     />
                   </div>
-                  <div className={`flex flex-col justify-center px-10 py-12 md:px-16 md:py-16 text-center md:text-left ${panelStyle}`}>
+                  <div className={`menu-panel flex flex-col justify-center px-10 py-12 md:px-16 md:py-16 text-center md:text-left ${panelStyle}`}>
                     <h3 className="font-display text-4xl sm:text-6xl text-secondary lowercase">
                       {cat.title}
                     </h3>
@@ -176,7 +176,7 @@ const ProductListSection = () => {
                       }`}
                     >
                       {cat.items.map((item) => (
-                        <li key={item} className="flex items-start gap-3">
+                        <li key={item} className="menu-item flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary/40" />
                           <span>{item}</span>
                         </li>
