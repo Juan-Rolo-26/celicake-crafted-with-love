@@ -7,6 +7,7 @@ import igCapture039 from "@/assets/instagram/Captura de pantalla 2026-01-22 0240
 import igCapture112 from "@/assets/instagram/Captura de pantalla 2026-01-22 024112.png";
 import igDelicioso3 from "@/assets/instagram/ig-deliciosos-3-DTNfaDUjr17.jpg";
 import { fadeUp, staggerContainer } from "@/lib/motion";
+import MovingBackground from "@/components/ui/MovingBackground";
 
 const ProductListSection = () => {
   const ref = useRef(null);
@@ -98,8 +99,9 @@ const ProductListSection = () => {
     <section
       id="lista-productos"
       ref={ref}
-      className="relative bg-background pb-2"
+      className="relative bg-background pb-2 overflow-hidden"
     >
+      <MovingBackground color="text-secondary/5" />
       {/* fondo */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 right-10 h-64 w-64 rounded-full bg-rose-light/50 blur-3xl float-slow" />
@@ -171,9 +173,8 @@ const ProductListSection = () => {
                     )}
                     <div className="mt-6 h-px w-24 bg-secondary/35 mx-auto md:mx-0" />
                     <ul
-                      className={`mt-6 max-w-xl text-base leading-relaxed text-secondary/80 sm:text-lg ${
-                        useTwoColumns ? "grid gap-3 sm:grid-cols-2" : "grid gap-3"
-                      }`}
+                      className={`mt-6 max-w-xl text-base leading-relaxed text-secondary/80 sm:text-lg ${useTwoColumns ? "grid gap-3 sm:grid-cols-2" : "grid gap-3"
+                        }`}
                     >
                       {cat.items.map((item) => (
                         <li key={item} className="menu-item flex items-start gap-3">

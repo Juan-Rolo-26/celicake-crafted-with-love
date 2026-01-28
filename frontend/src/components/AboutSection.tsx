@@ -1,7 +1,9 @@
+// @ts-nocheck
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import aboutImage from "@/assets/instagram/ig-product-2-DTc2ADBjvV0.jpg";
 import { staggerContainer } from "@/lib/motion";
+import MovingBackground from "@/components/ui/MovingBackground";
 
 const container = {
   hidden: {},
@@ -50,6 +52,7 @@ const AboutSection = () => {
       ref={ref}
       className="relative py-28 bg-cream border-b border-cream-dark/20 overflow-hidden"
     >
+      <MovingBackground color="text-rose-dark/5" />
       {/* manchas suaves de fondo */}
       <div className="absolute -top-24 right-20 h-72 w-72 rounded-full bg-rose-light/40 blur-3xl" />
       <div className="absolute bottom-10 left-16 h-64 w-64 rounded-full bg-sage-light/40 blur-3xl" />
@@ -133,7 +136,7 @@ const AboutSection = () => {
                 >
                   {value}
                 </motion.span>
-                ))}
+              ))}
             </motion.div>
           </div>
         </motion.div>

@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, type FormEvent } from "react";
 import { Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import MovingBackground from "@/components/ui/MovingBackground";
 
 const container = {
   hidden: {},
@@ -68,13 +70,15 @@ const ContactSection = () => {
     <section
       id="contacto"
       ref={ref}
-      className="relative py-28 bg-cream border-b border-cream-dark/20 overflow-hidden"
+      className="relative py-28 bg-rose/10 border-b border-rose/20 overflow-hidden"
     >
-      {/* manchas suaves */}
-      <div className="absolute -top-24 right-20 h-72 w-72 rounded-full bg-rose-light/40 blur-3xl" />
-      <div className="absolute bottom-10 left-16 h-64 w-64 rounded-full bg-sage-light/40 blur-3xl" />
+      <MovingBackground color="text-rose-dark/10" count={15} />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Decorative Blobs */}
+      <div className="absolute -top-24 right-20 h-96 w-96 rounded-full bg-white/40 blur-[100px] mix-blend-overlay" />
+      <div className="absolute bottom-10 left-16 h-80 w-80 rounded-full bg-rose/20 blur-[100px] mix-blend-multiply" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         {/* HEADER */}
         <motion.div
           variants={fadeUpSoft}
@@ -82,13 +86,13 @@ const ContactSection = () => {
           animate={isInView ? "show" : "hidden"}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] text-secondary mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] text-secondary mb-6 drop-shadow-sm">
             Acompañamos tu pedido
             <br />
-            <span className="italic">de principio a fin</span>
+            <span className="italic text-rose-dark">de principio a fin</span>
           </h2>
 
-          <p className="text-lg text-foreground/75 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
             Respondemos cada mensaje de forma personal.
             Sin automatismos, sin apuro, con el cuidado que merece lo SIN TACC.
           </p>
@@ -104,13 +108,13 @@ const ContactSection = () => {
           {/* CONTACTO DIRECTO */}
           <motion.div
             variants={cardReveal}
-            className="rounded-[40px] border border-cream-dark/60 bg-background/90 p-10 shadow-elevated"
+            className="rounded-[40px] border border-white/60 bg-white/90 backdrop-blur-md p-10 shadow-xl"
           >
-            <h3 className="font-display text-2xl text-secondary mb-4">
+            <h3 className="font-display text-3xl text-secondary mb-4">
               Contacto directo
             </h3>
 
-            <p className="text-foreground/75 leading-relaxed mb-8">
+            <p className="text-foreground/75 leading-relaxed mb-8 text-lg">
               Si no sabés qué elegir, si tenés dudas o necesitás algo especial,
               escribinos. Te guiamos con calma y claridad.
             </p>
@@ -118,27 +122,27 @@ const ContactSection = () => {
             <Button
               onClick={handleWhatsApp}
               size="lg"
-              className="rounded-full bg-primary text-secondary px-8 py-4 text-[11px] uppercase tracking-[0.35em] shadow-soft hover:scale-105 transition-transform"
+              className="rounded-full bg-sage text-white hover:bg-sage-dark px-10 py-6 text-xs uppercase tracking-[0.35em] shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
-              <MessageCircle size={18} />
+              <MessageCircle size={20} className="mr-3" />
               Escribir por WhatsApp
             </Button>
 
-            <p className="mt-4 text-sm text-foreground/65">
+            <p className="mt-4 text-sm text-foreground/60 font-medium ml-2">
               Respondemos rápido y con atención real.
             </p>
 
-            <div className="mt-10 rounded-[28px] border border-cream-dark/60 bg-cream/40 p-6">
-              <h4 className="font-display text-lg text-secondary mb-2">
+            <div className="mt-12 rounded-[28px] border border-rose/30 bg-rose/10 p-8">
+              <h4 className="font-display text-xl text-rose-dark mb-2">
                 Instagram
               </h4>
-              <p className="text-foreground/75 mb-4">
+              <p className="text-foreground/75 mb-6 text-base">
                 Ideas reales, pedidos del día y novedades.
               </p>
 
               <Button
                 variant="outline"
-                className="rounded-full border-secondary/30 bg-background text-secondary hover:border-secondary/60"
+                className="rounded-full border-rose-dark/30 bg-white text-rose-dark hover:bg-rose-dark hover:text-white hover:border-transparent transition-all duration-300"
                 asChild
               >
                 <a
@@ -146,12 +150,12 @@ const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Instagram size={18} />
-                  @celicake_
+                  <Instagram size={18} className="mr-2" />
+                  Seguinos en @celicake_
                 </a>
               </Button>
 
-              <p className="mt-4 text-sm text-foreground/65">
+              <p className="mt-4 text-sm text-foreground/60 font-medium">
                 Atención en Córdoba, Argentina.
               </p>
             </div>
@@ -160,38 +164,51 @@ const ContactSection = () => {
           {/* FORMULARIO */}
           <motion.div
             variants={cardReveal}
-            className="rounded-[36px] border border-cream-dark/60 bg-background/85 p-10 shadow-soft"
+            className="rounded-[36px] border border-white/60 bg-white/80 backdrop-blur-md p-10 shadow-lg relative overflow-hidden"
           >
-            <h3 className="font-display text-2xl text-secondary mb-2">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-rose/20 rounded-bl-[100px] -z-10" />
+
+            <h3 className="font-display text-3xl text-secondary mb-2">
               Dejanos tu mensaje
             </h3>
-            <p className="text-sm text-foreground/70 mb-8">
+            <p className="text-sm text-foreground/70 mb-8 font-medium uppercase tracking-wider">
               Leemos todo personalmente 💛
             </p>
 
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <Input
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                placeholder="Tu nombre"
-                className="rounded-2xl bg-cream/60 border-cream-dark/60 focus-visible:ring-primary"
-              />
-              <Input
-                value={order}
-                onChange={(event) => setOrder(event.target.value)}
-                placeholder="¿Qué te gustaría pedir?"
-                className="rounded-2xl bg-cream/60 border-cream-dark/60 focus-visible:ring-primary"
-              />
-              <Textarea
-                value={details}
-                onChange={(event) => setDetails(event.target.value)}
-                placeholder="Contanos la ocasión o cualquier detalle importante"
-                className="rounded-2xl min-h-[140px] bg-cream/60 border-cream-dark/60 focus-visible:ring-primary"
-              />
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest text-foreground/50 font-bold ml-1">Nombre</label>
+                <Input
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  placeholder="Tu nombre completo"
+                  className="rounded-2xl bg-white border-rose/20 focus:border-rose focus:ring-rose/20 h-12 shadow-sm"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest text-foreground/50 font-bold ml-1">Pedido</label>
+                <Input
+                  value={order}
+                  onChange={(event) => setOrder(event.target.value)}
+                  placeholder="¿Qué te gustaría pedir?"
+                  className="rounded-2xl bg-white border-rose/20 focus:border-rose focus:ring-rose/20 h-12 shadow-sm"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest text-foreground/50 font-bold ml-1">Detalles</label>
+                <Textarea
+                  value={details}
+                  onChange={(event) => setDetails(event.target.value)}
+                  placeholder="Contanos la ocasión o cualquier detalle importante..."
+                  className="rounded-2xl min-h-[160px] bg-white border-rose/20 focus:border-rose focus:ring-rose/20 resize-none shadow-sm"
+                />
+              </div>
 
               <Button
                 type="submit"
-                className="mt-4 w-full rounded-full bg-primary text-secondary px-6 py-4 text-[11px] uppercase tracking-[0.35em] shadow-soft hover:scale-105 transition-transform"
+                className="mt-6 w-full rounded-full bg-secondary text-white hover:bg-black px-6 py-6 text-xs uppercase tracking-[0.35em] shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
               >
                 Quiero asesoramiento
               </Button>

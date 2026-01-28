@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Star } from "lucide-react";
 import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
+import MovingBackground from "@/components/ui/MovingBackground";
 
 const TestimonialsSection = () => {
   const ref = useRef(null);
@@ -44,8 +45,9 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section id="opiniones" ref={ref} className="py-24 bg-cream border-b border-cream-dark/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="opiniones" ref={ref} className="py-24 bg-cream border-b border-cream-dark/20 relative overflow-hidden">
+      <MovingBackground color="text-primary/10" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           variants={headerVariants}
           initial="hidden"

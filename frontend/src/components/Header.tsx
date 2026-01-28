@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoSrc from "@/assets/logo_celicake.png";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
-  const [visible, setVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.6);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -31,104 +32,125 @@ const Header = () => {
   ];
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.header
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-cream-dark/60"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-20">
-              {/* Logo */}
-              <a href="#inicio" className="group flex items-center gap-3">
-                <img
-                  src={logoSrc}
-                  alt="CeliCake"
-                  className="h-12 w-12 object-contain drop-shadow-[0_8px_14px_rgba(35,20,12,0.18)]"
-                />
-                <div className="leading-tight">
-                  <span className="block font-display text-2xl text-foreground transition-colors duration-300 group-hover:text-warm-brown">
-                    CeliCake
-                  </span>
-                  <span className="block text-[10px] uppercase tracking-[0.3em] text-foreground/60 transition-colors duration-300 group-hover:text-warm-brown/80">
-                    sin gluten
-                  </span>
-                </div>
-              </a>
-
-              {/* Desktop nav */}
-              <nav className="hidden md:flex items-center gap-6">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="nav-button"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-
-              {/* CTA */}
-              <div className="hidden md:flex">
-                <Button
-                  onClick={handleWhatsApp}
-                  className="rounded-full bg-primary/90 text-secondary px-7 py-3 text-[11px] uppercase tracking-[0.32em] border border-primary/40 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-background hover:border-secondary/70 hover:shadow-elevated"
-                >
-                  <MessageCircle size={16} />
-                  Pedir
-                </Button>
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent",
+          scrolled
+            ? "bg-white/95 backdrop-blur-md py-4 shadow-sm border-stone-100"
+            : "bg-transparent py-6 border-transparent"
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <a href="#inicio" className="relative z-50 flex items-center gap-2 group">
+              <img
+                src={logoSrc}
+                alt="CeliCake"
+                className={cn(
+                  "transition-all duration-500 object-contain drop-shadow-md",
+                  scrolled ? "h-10 w-10" : "h-12 w-12"
+                )}
+              />
+              <div className="flex flex-col">
+                <span className={cn(
+                  "font-logo text-2xl transition-colors duration-300",
+                  scrolled ? "text-stone-900" : "text-white"
+                )}>
+                  CeliCake
+                </span>
               </div>
+            </a>
 
-              {/* Mobile button */}
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-10">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={cn(
+                    "text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:tracking-[0.25em]",
+                    scrolled ? "text-stone-600 hover:text-stone-900" : "text-white/80 hover:text-white"
+                  )}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Actions */}
+            <div className="flex items-center gap-4">
+              <Button
+                onClick={handleWhatsApp}
+                variant="ghost"
+                size="icon"
+                className={cn(
+                  "hidden md:flex rounded-full transition-colors duration-300 hover:bg-white/10",
+                  scrolled ? "text-stone-800 hover:bg-stone-100" : "text-white hover:text-white"
+                )}
+              >
+                <ShoppingBag size={20} strokeWidth={1.5} />
+              </Button>
+
+              {/* Mobile Toggle */}
               <button
-                className="md:hidden rounded-full border border-secondary/30 bg-background/90 p-2 text-secondary shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-background hover:border-secondary/70"
+                className={cn(
+                  "md:hidden p-2 transition-colors",
+                  scrolled ? "text-stone-800" : "text-white"
+                )}
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
-                {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+                {mobileOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
               </button>
             </div>
           </div>
+        </div>
+      </motion.header>
 
-          {/* Mobile menu */}
-          <AnimatePresence>
-            {mobileOpen && (
-              <motion.nav
-                initial={{ opacity: 0, y: -10 }}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-stone-950/95 backdrop-blur-xl flex flex-col items-center justify-center"
+          >
+            <nav className="flex flex-col items-center gap-8">
+              {navItems.map((item, i) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * i }}
+                  className="text-2xl font-serif text-stone-200 hover:text-white transition-colors"
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="md:hidden bg-cream border-t border-cream-dark/60"
+                transition={{ delay: 0.3 }}
               >
-                <div className="px-4 py-6 flex flex-col gap-5">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="nav-button w-full justify-center"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-
-                  <Button
-                    onClick={handleWhatsApp}
-                    className="mt-4 rounded-full bg-primary/90 text-secondary px-7 py-3 text-[11px] uppercase tracking-[0.32em] border border-primary/40 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-background hover:border-secondary/70 hover:shadow-elevated"
-                  >
-                    <MessageCircle size={16} />
-                    Pedir por WhatsApp
-                  </Button>
-                </div>
-              </motion.nav>
-            )}
-          </AnimatePresence>
-        </motion.header>
-      )}
-    </AnimatePresence>
+                <Button
+                  onClick={handleWhatsApp}
+                  className="mt-8 bg-white text-stone-900 hover:bg-stone-200 rounded-full px-8 py-6 text-xs uppercase tracking-widest"
+                >
+                  Hacer Pedido
+                </Button>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
