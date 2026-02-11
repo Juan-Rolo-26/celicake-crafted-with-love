@@ -62,7 +62,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="preguntas" ref={ref} className="py-24 bg-background border-b border-cream-dark/20">
+    <section id="preguntas" ref={ref} className="py-24 bg-sage-light/30 border-b border-sage/10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={headerVariants}
@@ -70,11 +70,14 @@ const FAQSection = () => {
           animate={isInView ? "show" : "hidden"}
           className="text-center mb-12"
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-secondary mb-4">
-            Preguntas frecuentes
+          <span className="text-primary font-medium tracking-wider uppercase text-sm mb-2 block">
+            Dudas Comunes
+          </span>
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-secondary mb-6">
+            Preguntas Frecuentes
           </h2>
-          <p className="text-lg text-foreground/80">
-            Te respondemos todo para que pidas con confianza.
+          <p className="text-lg text-warm-brown/80 max-w-2xl mx-auto">
+            Te respondemos todo para que pidas con confianza y disfrutes sin preocupaciones.
           </p>
         </motion.div>
 
@@ -82,19 +85,19 @@ const FAQSection = () => {
           variants={fadeUp(16, 0.6)}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="rounded-3xl border border-cream-dark/60 bg-card/90 p-6 shadow-soft"
+          className="rounded-3xl border border-sage/20 bg-white/90 backdrop-blur-md p-6 sm:p-10 shadow-elevated"
         >
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((item, index) => (
               <AccordionItem
                 key={item.question}
                 value={`item-${index + 1}`}
-                className="border-cream-dark/40"
+                className="border-b border-sage/10 last:border-0 px-2"
               >
-                <AccordionTrigger className="text-left font-display text-lg text-secondary">
+                <AccordionTrigger className="text-left font-display text-xl text-secondary hover:text-primary transition-colors py-5">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 text-sm leading-relaxed">
+                <AccordionContent className="text-warm-brown/90 text-base leading-relaxed pb-5 px-1">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
