@@ -78,19 +78,21 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="font-logo text-[15vw] md:text-[9rem] lg:text-[11rem] leading-[0.85] text-white drop-shadow-2xl mix-blend-overlay"
+            className="font-logo text-[18vw] sm:text-[7.5rem] md:text-[9rem] lg:text-[11rem] leading-[0.85] text-white drop-shadow-2xl"
           >
             CeliCake
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="mt-8 text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-white/90 max-w-2xl"
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.9 }}
+            className="mt-6 max-w-4xl px-2 font-display text-2xl leading-[1.2] text-white drop-shadow-xl sm:text-4xl md:text-5xl"
           >
-            Alta Pastelería <span className="font-serif italic capitalize text-accent">Sin Gluten</span>
-          </motion.p>
+            Panadería Y Repostería{" "}
+            <span className="font-serif italic text-accent">Sin Gluten</span>{" "}
+            Apto Celíaco
+          </motion.h2>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

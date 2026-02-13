@@ -305,7 +305,7 @@
     }
 
     .menu-item:hover {
-      transform: translateX(6px);
+      transform: translateY(-2px);
       color: hsl(var(--secondary));
     }
   }

@@ -15,7 +15,7 @@ const ProductListSection = () => {
 
   const categories = [
     {
-      title: "Sin azúcar agregada",
+      title: "Sin Azúcar Agregada",
       tone: "rose",
       image: igCapture010,
       items: [
@@ -25,7 +25,7 @@ const ProductListSection = () => {
       ],
     },
     {
-      title: "Sin azúcar y sin harinas",
+      title: "Sin Azúcar Y Sin Harinas",
       tone: "cream",
       image: igCapture025,
       items: [
@@ -37,7 +37,7 @@ const ProductListSection = () => {
       ],
     },
     {
-      title: "Sin lácteos",
+      title: "Sin Lácteos",
       tone: "sage",
       image: igCapture112,
       items: [
@@ -51,7 +51,7 @@ const ProductListSection = () => {
     },
     {
       title: "Dulce",
-      subtitle: "Tartas, budines y alfajores",
+      subtitle: "Tartas, Budines Y Alfajores",
       tone: "rose",
       image: igCapture039,
       items: [
@@ -66,7 +66,7 @@ const ProductListSection = () => {
     },
     {
       title: "Salado",
-      subtitle: "Clásicos y panificados",
+      subtitle: "Clásicos Y Panificados",
       tone: "sage",
       image: igDelicioso3,
       items: [
@@ -117,7 +117,7 @@ const ProductListSection = () => {
           className="mx-auto mb-2 flex min-h-[18vh] w-full max-w-3xl flex-col items-center justify-center gap-4 px-4 py-8 text-center sm:min-h-[22vh] sm:px-6 lg:px-8"
         >
           <h2 className="font-display text-3xl sm:text-4xl text-secondary">
-            Nuestra carta, pensada para cuidarte
+            Nuestra Carta, Pensada Para Cuidarte
           </h2>
 
           <p className="text-sm text-foreground/75 max-w-2xl mx-auto leading-relaxed">
@@ -147,7 +147,6 @@ const ProductListSection = () => {
           {categories.map((cat, index) => {
             const isReversed = index % 2 !== 0;
             const panelStyle = tonePanel[cat.tone as keyof typeof tonePanel];
-            const useTwoColumns = cat.items.length > 6;
             return (
               <motion.div
                 key={cat.title}
@@ -162,35 +161,34 @@ const ProductListSection = () => {
                       className="h-full w-full object-cover min-h-[260px] md:min-h-[560px] transition-[filter,opacity,transform] duration-500 ease-out group-hover:brightness-105 group-hover:opacity-95"
                     />
                   </div>
-                  <div className={`menu-panel flex flex-col justify-center px-10 py-12 md:px-16 md:py-16 text-center md:text-left ${panelStyle}`}>
-                    <h3 className="font-display text-4xl sm:text-6xl text-secondary lowercase">
+                  <div className={`menu-panel flex flex-col items-center justify-center px-6 py-10 text-center sm:px-10 sm:py-12 md:px-12 md:py-14 ${panelStyle}`}>
+                    <h3 className="font-display text-3xl sm:text-5xl text-secondary capitalize">
                       {cat.title}
                     </h3>
                     {cat.subtitle && (
-                      <p className="mt-4 text-[12px] uppercase tracking-[0.35em] text-secondary/60">
+                      <p className="mt-4 text-[11px] uppercase tracking-[0.28em] text-secondary/60 sm:text-xs">
                         {cat.subtitle}
                       </p>
                     )}
-                    <div className="mt-6 h-px w-24 bg-secondary/35 mx-auto md:mx-0" />
-                    <ul
-                      className={`mt-6 max-w-xl text-base leading-relaxed text-secondary/80 sm:text-lg ${useTwoColumns ? "grid gap-3 sm:grid-cols-2" : "grid gap-3"
-                        }`}
-                    >
+                    <div className="mt-6 h-px w-24 bg-secondary/35" />
+                    <ul className="mt-6 w-full max-w-xl space-y-3">
                       {cat.items.map((item) => (
-                        <li key={item} className="menu-item flex items-start gap-3">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary/40" />
-                          <span>{item}</span>
+                        <li
+                          key={item}
+                          className="menu-item rounded-xl border border-secondary/15 bg-white/55 px-5 py-3 text-center text-sm leading-relaxed text-secondary/85 sm:text-base"
+                        >
+                          {item}
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-6 h-px w-24 bg-secondary/35 mx-auto md:mx-0" />
+                    <div className="mt-6 h-px w-24 bg-secondary/35" />
                     <Button
                       onClick={handleWhatsApp}
                       variant="outline"
                       size="sm"
-                      className="mt-6 self-center md:self-start rounded-none border-secondary/60 bg-transparent text-[12px] uppercase tracking-[0.35em] text-secondary hover:bg-secondary/10"
+                      className="mt-7 self-center rounded-none border-secondary/60 bg-transparent px-6 text-[11px] uppercase tracking-[0.28em] text-secondary hover:bg-secondary/10 sm:text-xs"
                     >
-                      Hacé tu pedido
+                      Hacé Tu Pedido
                     </Button>
                   </div>
                 </div>

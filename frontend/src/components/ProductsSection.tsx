@@ -65,7 +65,7 @@ const ProductsSection = () => {
           variants={gridVariants}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6"
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6"
         >
           {productImages.map((image, index) => (
             <motion.div
@@ -73,7 +73,7 @@ const ProductsSection = () => {
               variants={cardVariants}
               transition={{ type: "spring", stiffness: 220, damping: 18 }}
               whileHover={{ y: -6 }}
-              className="group rounded-3xl border border-cream-dark/60 bg-card/90 shadow-soft hover:shadow-elevated transition-all duration-500 overflow-hidden"
+              className={`group rounded-3xl border border-cream-dark/60 bg-card/90 shadow-soft hover:shadow-elevated transition-all duration-500 overflow-hidden ${index >= 6 ? "hidden sm:block" : ""}`}
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img
